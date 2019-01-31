@@ -1,0 +1,3 @@
+“Schneider Electric” is a migration project. It has an existing reporting system build in SSRS (SQL Server Reporting Services) 2008, which is pulling data from different sources and different databases in the Schneider environment. Project is to build a mechanism to integrate the whole data which is used to generate reports under a single repository and migrate the all reports to SSRS 2016 version for better performance and stability. Apart from SSRS reports, new dashboard reports was developed for business using Microsoft Power BI. Existing Power BI Reports are migrated 
+
+from excel sources of data and make those reports also pull data from Centralized Repository.
