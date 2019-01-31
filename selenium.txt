@@ -1,0 +1,25 @@
+verify checkbox
+
+
+WebElement checkbox = driver.findElement(By.id("checkboxId"));
+
+//If the checkbox is unchecked then isSelected() will return false 
+//and NOT of false is true, hence we can click on checkbox
+if(!checkbox.isSelected())
+	checkbox.click();
+
+//checkbox is selected by default
+
+if(checkn=box.isSelected())
+checkbox.click();
+
+
+verify radio button
+
+if(driver.findElement(By.xpath("//input[@class='radio' and @name='blooms_level'][starts-with(@id,'blooms_level')]")).isSelected())
+//if(driver.findElement(By.cssSelector("input.radio[name='blooms_level'][id^='blooms_level']")).isSelected())
+    System.out.println("Radio Button is selected");
+else
+    System.out.println("Radio Button is not selected");
+
+
