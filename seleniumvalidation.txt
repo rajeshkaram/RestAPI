@@ -1,0 +1,213 @@
+verify checkbox
+
+*******************************************************************************
+WebElement checkbox = driver.findElement(By.id("checkboxId"));
+
+//If the checkbox is unchecked then isSelected() will return false 
+//and NOT of false is true, hence we can click on checkbox
+if(!checkbox.isSelected())
+	checkbox.click();
+
+//checkbox is selected by default
+
+if(checkn=box.isSelected())
+checkbox.click();
+
+********************************************************************************************
+verify radio button
+
+if(driver.findElement(By.xpath("//input[@class='radio' and @name='blooms_level'][starts-with(@id,'blooms_level')]")).isSelected())
+//if(driver.findElement(By.cssSelector("input.radio[name='blooms_level'][id^='blooms_level']")).isSelected())
+    System.out.println("Radio Button is selected");
+else
+    System.out.println("Radio Button is not selected");
+
+
+*****************************************************************
+o check Element Present:
+
+if(driver.findElements(By.xpath("value")).size() != 0){
+System.out.println("Element is Present");
+}else{
+System.out.println("Element is Absent");
+}
+
+Or
+********************************************************************
+if(driver.findElement(By.xpath("value"))!= null){
+System.out.println("Element is Present");
+}else{
+System.out.println("Element is Absent");
+}
+******************************************************************
+To check Visible:
+
+if( driver.findElement(By.cssSelector("a > font")).isDisplayed()){
+System.out.println("Element is Visible");
+}else{
+System.out.println("Element is InVisible");
+}
+***********************************************************************
+To check Enable:
+
+if( driver.findElement(By.cssSelector("a > font")).isEnabled()){
+System.out.println("Element is Enable");
+}else{
+System.out.println("Element is Disabled");
+}
+********************************************************************************
+To check text present
+
+if(driver.getPageSource().contains("Text to check")){
+System.out.println("Text is present");
+}else{
+System.out.println("Text is absent");
+}
+
+******************************************************************************************
+private enum ElementStatus{
+        VISIBLE,
+        NOTVISIBLE,
+        ENABLED,
+        NOTENABLED,
+        PRESENT,
+        NOTPRESENT
+    }
+    private ElementStatus isElementVisible(WebDriver driver, By by,ElementStatus getStatus){
+        try{
+            if(getStatus.equals(ElementStatus.ENABLED)){
+                if(driver.findElement(by).isEnabled())
+                    return ElementStatus.ENABLED;
+                return ElementStatus.NOTENABLED; 
+            }
+            if(getStatus.equals(ElementStatus.VISIBLE)){
+                if(driver.findElement(by).isDisplayed())
+                    return ElementStatus.VISIBLE;
+                return ElementStatus.NOTVISIBLE;
+            }
+            return ElementStatus.PRESENT;
+        }catch(org.openqa.selenium.NoSuchElementException nse){
+            return ElementStatus.NOTPRESENT;
+        }
+    }
+***************************************************************************************
+text on button
+public void verify()throws Exception
+{
+driver.get("http://google.co.in");
+WebElement element = driver.findElement(By.xpath("//span[text()='Google Search']"));
+String strng = element.getText();
+System.out.println(strng);
+Assert.assertEquals("Google Search", strng);
+}
+}
+*********************************************************************************
+enable isdisplayed radio displayed
+
+WebElement male_radio_button=driver.findElement(By.id("u_0_e"));
+ 
+         boolean status=male_radio_button.isDisplayed();
+ 
+         System.out.println("Male radio button is Displayed >>"+status);
+ ***************************************************************************************
+          boolean enabled_status=male_radio_button.isEnabled();
+ 
+          System.out.println("Male radio button is Enabled >>"+enabled_status);
+ *******************************************************************************************
+        boolean selected_status=male_radio_button.isSelected();
+ 
+          System.out.println("Male radio button is Selected >>"+selected_status);
+ 
+          male_radio_button.click();
+ ************************************************************************************
+        boolean selected_status_new=male_radio_button.isSelected();
+ 
+          System.out.println("Male radio button is Selected >>"+selected_status_new);
+ 
+     }
+ 
+}
+
+**************************************************************************************************
+
+webtables to print table  rows content in console conclude company contains 3 columns
+
+//*[@id="customers"]/tbody/tr[2]/td[1]
+
+1st column
+****************************************************************************************
+List<webelement>rows=driver.findelements(By.xpath("//table[@id='customers']/tbody/tr
+int rowcount=rows.size();
+System.out.println("Total rows in web table:" +rowcount);
+String beforexapth="//8[@id='customers']/tbody/tr[";
+String afterxpath= "]/td[1]";
+for(int i=2;i<=rowcount;i++){
+
+String actualxpath=beforexpath+i+afterxpath;
+webelement element =driver.findElement(By.xpath(actualxpath));
+System.out.println(element.getText());
+if(element.getText().equals("Island trading")){
+
+System.out.println("company name :"+element.getText()+" is found:"+(i-1));
+break;
+}
+}
+***************************************************************************
+2nd column
+//*[@id="customers"]/tbody/tr[2]/td[1]
+
+String beforexapth="//8[@id='customers']/tbody/tr[";
+String afterxpath= "]/td[2]";
+for(int i=2;i<=rowcount;i++){
+
+String actualxpath=beforexpath+i+afterxpath;
+webelement element =driver.findElement(By.xpath(actualxpath));
+System.out.println(element.getText());
+*****************************************************************************
+3rd column
+//*[@id="customers"]/tbody/tr[2]/td[1]
+
+String beforexapth="//8[@id='customers']/tbody/tr[";
+String afterxpath= "]/td[3]";
+for(int i=2;i<=rowcount;i++){
+
+String actualxpath=beforexpath+i+afterxpath;
+webelement element =driver.findElement(By.xpath(actualxpath));
+System.out.println(element.getText());
+
+************************************************************************************
+to print columns contents in table
+
+//*[@id="customers"]/tobody/tr[1]/th[1]
+
+String colbeforexpath="//[@id='customers']/tbody/tr[1]/th[";
+String colAfterxpath= "]";
+List<Webelement>cols=driver.findElements(xpath("//*[@id='customers']/tobody/tr[1]/th"));
+int colcount=cols.size();
+System.out.println("Total number of columns are:" + colcount);
+for(int i=1;i<colcount;i++){
+
+Webelement element=driver.findElement(By.xapth(colBeforexpath+i+colAfterxpath));
+String colText=element.getText();
+System.out.println("columns values are:");
+System.out.println(colText);
+
+*********************************************************************************
+to print tables row values name contains with x then click checkbox in console
+
+String beforexapth="//*[@id='contacts']/tbody/tr[";
+String afterxpath="]/td[2]/a";
+for(int i=4;i<=7;i++){
+String name=driver.findElement(By.xpath(beforexpath+i+afterxpath)).getText();
+System.out.println(name);
+if(name.contains("test2 test2")){ i=6
+
+//*[@id='vcontactsform']/table/tbody/tr[6]/td[1]/input--append
+
+driver.findElement(By.xpath("//*[@id='vcontactsform']/table/tbody/tr["+i+"]/input")).click();
+}
+}
+
+
+}
+**************************************************************************************************
