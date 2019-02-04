@@ -1,0 +1,14 @@
+git using bash
+
+$ cd C:
+$cd Users
+$cd rajesh.k
+$cd eclipse-workspace
+$cd sample
+$git init
+$git status
+$git remote add origin https://github.com.git(url)
+$git add .
+$ ls -git
+$git commit -m "bashcode"
+$git remote add origin master
