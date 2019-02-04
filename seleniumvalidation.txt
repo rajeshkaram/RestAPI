@@ -211,3 +211,21 @@ driver.findElement(By.xpath("//*[@id='vcontactsform']/table/tbody/tr["+i+"]/inpu
 
 }
 **************************************************************************************************
+image validation 
+
+@Test
+public void CheckImage() throws Exception {
+driver.get(baseUrl);
+WebElement ImageFile = driver.findElement(By.xpath("//img[contains(@id,'Test Image')]"));
+
+    Boolean ImagePresent = (Boolean) ((JavascriptExecutor)driver).executeScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", ImageFile);
+    if (!ImagePresent)
+    {
+         System.out.println("Image not displayed.");
+    }
+    else
+    {
+        System.out.println("Image displayed.");
+    }
+}
+***********************************************************************************************************
