@@ -228,4 +228,26 @@ WebElement ImageFile = driver.findElement(By.xpath("//img[contains(@id,'Test Ima
         System.out.println("Image displayed.");
     }
 }
-***********************************************************************************************************
+************************************************************************************************
+Handle Basic authentication pop up in selenium
+
+webdriver driver=new chromedriver();
+driver.get("http://admin:admin@the-internet.herokuapp.com/basic_auth");
+String pagemessage=driver.findelement(By.xpath()).getText();
+System.out.println(pageMessage);
+******************************************************************************************************
+handle windows authentication
+
+AUTO IT SCRIPT
+WindowWaitAcive("Authentication Requried")
+send("validusername")
+send("{TAB}")
+send("validpassword")
+send("{ENTER}")
+
+save and then compile u get exe file
+
+driver.manage().window().maximize();
+Runtime.getRuntime().exec("exe file path");
+driver.get(url);***********************************************************************************************
+*************************************************************************************************************
