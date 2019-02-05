@@ -251,3 +251,43 @@ driver.manage().window().maximize();
 Runtime.getRuntime().exec("exe file path");
 driver.get(url);***********************************************************************************************
 *************************************************************************************************************
+
+window handling parent and child
+
+driver.get(url)
+driver.find(xpath).click();
+set<String>handle=driver.getwindowHandles()
+iterator<string>it=handler.iterator();
+
+string parentwindowid=it.next();
+system.out.println("parent window id:"+parentwindowid);
+
+string childwindowid=it.next();
+system.out.println("child window id:"+childwindowid);
+
+driver.swithchTo().window(childwindowid);
+
+thread.sleep(2000);
+system.out.println("child window pop up title"+driver.getTitle());
+driver.close();
+
+driver.switchTo().window(parentwindowid);
+thread.sleep(2000);
+system.out.println("paretn window title"+driver.getTitle());
+**************************************************************************************************
+
+mutiple windows tabs switching
+
+//Get the current window handle
+String windowHandle = driver.getWindowHandle();
+
+//Get the list of window handles
+ArrayList tabs = new ArrayList (driver.getWindowHandles());
+System.out.println(tabs.size());
+//Use the list of window handles to switch between windows
+driver.switchTo().window(tabs.get(0));
+
+//Switch back to original window
+driver.switchTo().window(mainWindowHandle);
+
+******************************************************************************************************
