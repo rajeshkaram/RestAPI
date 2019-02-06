@@ -1,0 +1,174 @@
+use sys
+create table product(productid varchar(20),productname varchar(20),productprice varchar(20))
+desc product
+insert into product values(001,'amazon','5000')
+insert into product values(002,'del','1000')
+insert into product values(003,'samsung','2000')
+insert into product values(004,'lenovo','3000')
+insert into product values(005,'apple','6000')
+select * from product
+update product set productname='microsoft' where productid=001
+create table customer (customer_id varchar(20),first_name varchar(20),last_name varchar(30),email varchar(30),address varchar(30),city varchar(30),state varchar(20),zipcode varchar(20))
+desc customers
+insert into customer values(1,'Geroge','washington','gwashington@usa.gov','3200 Mt Vernon Hwy','Mount Vernon','VA','22121')
+select * from customer
+insert into customer values(2,'John','Adams','	jadams@usa.gov','1250 Hancock St','Quincy','MA','02169')
+insert into customer values(3,'Thomas','Jefferson','tjefferson@usa.gov','931 Thomas Jefferson Pkwy','Charlottesville','VA','22902')
+insert into customer values(4,'	James','Madison','jmadison@usa.gov','11350 Constitution Hwy','	Orange','VA','22960')
+insert into customer values(5,'	James','Monroe','jmonroe@usa.gov','	2050 James Monroe Parkway','Charlottesville','VA','	22902')
+select * from customer where last_name='washington'
+commit
+create table order(order_id varchar(20),order_date date,amount varchar(20),customer_id varchar(20))
+desc orders
+insert into orders values(1,'1776-04-07','$234.56','1')
+insert into orders values(2,'1760-03-14','$78.50','3')
+insert into orders values(3,'1784-05-23','$124.00','2')
+insert into orders values(4,'1790-09-03','$65.50','3')
+insert into orders values(5,'1795-07-21','$25.50','10')
+insert into orders values(6,'1787-11-27','$14.40','9')
+select * from orders
+create table or(order_id varchar(20),order_date DATE,amount varchar(20),customer_id varchar(20))
+create table admin(username varchar(20),password varchar(20))
+desc admin
+insert into admin values('raj','kumar')
+select * from admin
+select * from order
+select * from customer where zipcode = 22121
+
+delete from customer where zipcode = 22121
+update table customer set state='MA' where customer_id=1
+
+select sysdate()
+
+select * from admin
+truncate table admin
+drop table admin
+
+select * from admin
+UPDATE admin SET username='kiran' WHERE password='kumar'
+DELETE FROM admin WHERE username='kiran'
+insert into admin values('kiran','kumar')
+select * from admin
+
+create table emp(empid varchar(20),empname varchar(20),empdeg varchar(20),deptno varchar(20))
+insert into emp values(001,'a','software','10')
+insert into emp values(002,'b','testing','20')
+insert into emp values(003,'c','java','30')
+insert into emp values(004,'d','sap','40')
+insert into emp values(005,'e','selenium','50')
+select * from emp
+
+create table dept(deptno varchar(20),deptname varchar(20),loc varchar(20))
+insert into dept values(10,'a','hyd')
+insert into dept values(20,'b','aus')
+insert into dept values(30,'c','usa')
+insert into dept values(40,'d','canada')
+insert into dept values(50,'e','germany')
+
+select * from dept
+
+create table customerss(id varchar(20),name varchar(20),age varchar(20),address varchar(20),salary varchar(20))
+insert into customerss values(1,' Ramesh','32','Ahmedabad','2000.00')
+insert into customerss values(2,' Khilan','25','Delhi','1500.00 ')
+insert into customerss values(3,' kaushik','23','Kota ','2000.00')
+insert into customerss values(4,' Chaitali','25','Mumbai','6500.00 ')
+insert into customerss values(5,' Hardik','27','Bhopal','8500.00 ')
+insert into customerss values(6,' Komal','22','MP ',' 4500.00')
+insert into customerss values(7,' Muffy ','24','Indore','10000.00')
+select * from customerss
+commit
+
+create table orderss(oid varchar(20),date date,customer_id varchar(20),amount varchar(20))
+insert into orderss values(102,'2009-10-08 00:00:00 ','3','3000')
+
+insert into orderss values(100,'2009-10-08 00:00:00 ','3','1500')
+insert into orderss values(101,'2009-11-20 00:00:00 ','2','1560')
+insert into orderss values(103,'2008-05-20 00:00:00  ','4','2060')
+select * from orderss
+
+SELECT id, name, age, amount
+   FROM customerss, orderss
+   WHERE  customerss.id = orderss.customer_id;
+   ALTER TABLE orderss rename column oid to id
+   select * from orderss
+   
+   create table a(id varchar(20),name varchar(20),deg varchar(20))
+   insert into a values(01,'microsoft','soft')
+   insert into a values(02,'ibm','testing')
+   
+   create table b(id varchar(20),loc varchar(20))
+   insert into b values(01,'sap')
+   insert into b values(02,'tcs')
+   
+   select * from b
+   ALTER TABLE a rename column name to nam
+   select nam,deg,loc from a  join b ON a.id=b.id
+   create table admin(username varchar(20),password varchar(20),location varchar(20)
+insert into admin values(username vachar(20),password varchar(20),des varchar(20),salary varchar(20)
+
+create table custo(customerid varchar(50),fname varchar(50),emailid varchar(50))
+
+create table ord(orderid varchar(50),customerid varchar(50),orderitem varchar(50))
+insert into custo values(101,'john','john123@mail.com'),
+(102,'rob','rob123@mail.com'),
+(103,'david','david@mail.com')
+
+select * from custo
+
+
+insert into ord values(1001,101,'laptop'),
+(1002,102,'grocery'),
+(1003,null,'fruits')
+
+select * from custo
+select * from ord
+
+select * from custo inner join ord on custo.customerid=ord.customerid where fname='john'
+select * from custo inner join ord on custo.customerid=ord.customerid 
+
+select * from custo left outer join ord on custo.customerid=ord.customerid 
+
+select * from custo right outer join ord on custo.customerid=ord.customerid 
+select * from custo inner join ord on custo.customerid=ord.customerid where fname is not null
+select * from custo full outer join ord on custo.customerid=ord.customerid
+
+select * from custo left outer join ord on custo.customerid=ord.customerid union  select * from custo right outer join ord on custo.customerid=ord.customerid 
+
+create table admin(username varchar(20),pasword varchar(20))
+drop table admin
+select * from admin
+
+create table admin1(adid varchar(20),username varchar(20),password varchar(20))
+insert into admin1 values(1,'raj','kumar')
+select * from admin1
+delete from admin where username='raj'
+select * from admin1
+insert into admin values('raj','kumar')
+update admin1 set username='kiran' where adid=1
+truncate table admin1
+drop table admin1
+select * from admin1
+
+self join
+create table student1(name varchar(20),salary varchar(20))
+insert into student1 values('john',8000),('me',1000),('adams',8000),('jo',2000),('aus',3000)
+select * from student1
+
+select e2.name,e2.salary from student1 e1,student1 e2 where e1.salary=e2.salary and e1.name='adams'
+
+
+select * from custo inner join ord on custo.customerid=ord.customerid
+
+create table dup(id varchar(20),firstname varchar(20),lastname varchar(20),gender varchar(20),salary varchar(20))
+insert into dup values(1,'mark','steven','m',8000),(1,'mark','steven','m',8000),(1,'mark','steven','m',8000),
+(2,'john','cena','m',9000),(3,'adams','ad','m',7000),(3,'mark','steven','m',8000),(3,'mark','steven','m',8000),
+(4,'ma','st','m',5000),(4,'ma','st','m',5000),(4,'ma','st','m',5000)
+select * from dup
+
+delete duplicates row
+with dup AS 
+(select ID,FIRSTNAME,LASTNAME,GENDER,SALARY, ROW_NUMBER() over(Partition by id order by id) as Rownumber from dup)
+delete from dup where Rownumber > 1
+
+
+
