@@ -30,3 +30,878 @@ Expected result: On clicking SAVE button, should be prompted to a success messag
 
 Save the defect/bug in the BUG TRACKING TOOL.  You will get a bug id, which you can use for further bug reference.
 Default ‘New bug’ mail will go to the respective developer and the default module owner (Team leader or manager) for further action
+
+
+
+
+
+OrangeHRM Portal
+
+System Test Plan - Test Cases
+
+By Kris Pepper
+
+Version 1
+
+A note for students:
+
+This is a rework of a test plan found on : http://www.softwaretestinghelp.com/writing-test-cases-from-srs-software-testing-qa-training-day-4/ but changed by Pepper for CSC480
+
+For this deliverable, you need word document format, but the excel format above is very useful in business situations.
+
+ 
+
+Table of Contents
+
+Contents
+
+Preface
+
+System Description
+
+Test Environment
+
+Test Cases dealing the with login
+
+Test case ID: TC_MI_01
+
+Test case ID: TC_MI_012
+
+Test Cases dealing the with adding and changing accounts
+
+Test case ID: TC_MI_MIM_02
+
+Test case ID: TC_MI_P_03
+
+ 
+
+ 
+Preface
+
+The test team consisting of both OrangeHRM System users and programmers are intended to use this document.
+
+Author
+	
+
+Revision Date
+	
+
+Reason
+
+Kristin Pepper
+	
+
+4/4/2015
+	
+
+Initial Release
+
+ 
+	
+
+ 
+	
+
+ 
+
+ 
+
+ 
+System Description
+
+The OrangeHRM System is a web based manages employee photos. Employees can add or change their own photos and Human Resources can add or change everyone's photos. The system produces lists of photos by different selection criteria. Its photos will be used by many other systems in the company. The photos are stored in a configurable file structure and the photo location is pointed to by a file system.   This release only includes employee photos and name and address and social security information and not any of the other information planned for later.
+Test Environment
+
+The OrangeHRM System will be tested on panther in a development web site. Testers will access the site from different browsers locally on their pc and from a mac.  Results will be checked by querying the database, examining the picture files on panther and checking subsequent web inquiries and reports. The database and files will be partially filled when the test starts. A starting database script and a copy of the starting files as well as all the pictures to be uploaded will be kept on panther.
+Test Cases dealing the with login
+
+ 
+Test case ID: TC_MI_01
+
+ 
+
+Test objective: 
+
+Successful Employee login to OrangeHRM portal
+
+Precondition:
+
+1. A valid ESS-User account to login to be available
+
+2. Orange HRM 3.0 site is launched on a compatible browser
+
+Steps:
+
+1. In the login Panel, enter the username  (Test Data: "A valid username"")
+
+2. Enter the Password for the ESS-User account in the password field (Test data: "A valid Password")
+
+3. Click "Login" button
+
+Expected Result:
+
+The user is logged in successfully.  For first time users personal information is displayed. (There is only one expected result for the entire test case. However, that does not have to be so. If it makes sense that for every step, you want to write the result of exactly what happens with it, please free to have an expected result for each test step)
+
+ 
+Test case ID: TC_MI_012
+
+ 
+
+Test objective: 
+
+Error message on unsuccessful Employee login to OrangeHRM portal
+
+Precondition:
+
+1. A ESS-User name to login to be available
+
+2. Orange HRM 3.0 site is launched on a compatible browser
+
+Steps:
+
+1. In the login Panel, enter the username  (Test Data: "A valid username"")
+
+2. Enter the Password for the ESS-User account in the password field (Test data: "An invalid Password")
+
+3. Click "Login" button
+
+Expected Result:
+
+An Error message is displayed and the user is not logged in to the Orange HRM portal. "<Exact Error Message>"
+
+(In the test case, it is not  enough when we say, 'that an error is displayed'- in addition to that, we will have to mention the exact error message that is going to be encountered by the user- This information can generally be found in FRD(SRS). If not, look in the technical design document or Use cases )
+
+ 
+Test Cases dealing the with adding and changing accounts
+
+ 
+Test case ID: TC_MI_MIM_02
+
+ 
+
+Test objective: 
+
+Personal details- modification with valid values- "First Name"
+
+Precondition:
+
+1.       Orange HRM 3.0 site is launched on a compatible browser and a ESS User account holder is logged in to the site(The precondition can be used to avoid repeating steps 1, 2 and 3 as in the previous test case. However, if you are more comfortable having the login steps as well, that is ok too.)
+
+Steps:
+
+1. Check the fields on the "Personal information Page"
+
+2. Change the field, "First Name" with enter a valid new name in this field. ("A valid new value for the first name field")
+
+3. Click on "Save"
+
+ 
+
+Expected Result:
+
+Check if the following fields are disabled for entry in Personal Details:
+
+·         ● Employee ID
+
+·         ● SSN No
+
+·         ● SIN No
+
+·         ● Driver License No
+
+·         ● Date of Birth
+
+ The first name field needs to now show the new value entered
+
+Query the database to ensure the new name is updated.
+
+* This is how all the other field's modification can be tested. Be sure to include negative test cases, where an invalid data can be entered as the new value and an error message is observed
+Test case ID: TC_MI_P_03
+
+ 
+
+Test objective: 
+
+Check the upload of a invalid format of the picture (may be a .doc file) that is less than 1 MB
+
+Precondition:
+
+1. Orange HRM 3.0 site is launched on a compatible browser and a ESS User account holder is logged in to the site
+
+2. A doc file is available that is less than 1 MB
+
+Steps:
+
+1.       Click on the photograph displayed at the top left corner of the page
+
+2.       Click on "Choose a file" button
+
+3.       Choose the doc file that is less than 1 MB (Test data: Name of the image Location-path on the machine)
+
+4.       Click on upload
+
+Expected Result:
+
+·         The "Photograph screen" will be displayed
+
+·         You will be able to browse your local machine for images
+
+·         The file name is selected in the "Choose a file" box
+
+·         An error message is displayed that the format is not supported- <The exact error message>
+
+ 
+
+
+OrangeHRM Portal
+
+System Test Plan - Test Cases
+
+By Kris Pepper
+
+Version 1
+
+A note for students:
+
+This is a rework of a test plan found on : http://www.softwaretestinghelp.com/writing-test-cases-from-srs-software-testing-qa-training-day-4/ but changed by Pepper for CSC480
+
+For this deliverable, you need word document format, but the excel format above is very useful in business situations.
+
+ 
+
+Table of Contents
+
+Contents
+
+Preface
+
+System Description
+
+Test Environment
+
+Test Cases dealing the with login
+
+Test case ID: TC_MI_01
+
+Test case ID: TC_MI_012
+
+Test Cases dealing the with adding and changing accounts
+
+Test case ID: TC_MI_MIM_02
+
+Test case ID: TC_MI_P_03
+
+ 
+
+ 
+Preface
+
+The test team consisting of both OrangeHRM System users and programmers are intended to use this document.
+
+Author
+	
+
+Revision Date
+	
+
+Reason
+
+Kristin Pepper
+	
+
+4/4/2015
+	
+
+Initial Release
+
+ 
+	
+
+ 
+	
+
+ 
+
+ 
+
+ 
+System Description
+
+The OrangeHRM System is a web based manages employee photos. Employees can add or change their own photos and Human Resources can add or change everyone's photos. The system produces lists of photos by different selection criteria. Its photos will be used by many other systems in the company. The photos are stored in a configurable file structure and the photo location is pointed to by a file system.   This release only includes employee photos and name and address and social security information and not any of the other information planned for later.
+Test Environment
+
+The OrangeHRM System will be tested on panther in a development web site. Testers will access the site from different browsers locally on their pc and from a mac.  Results will be checked by querying the database, examining the picture files on panther and checking subsequent web inquiries and reports. The database and files will be partially filled when the test starts. A starting database script and a copy of the starting files as well as all the pictures to be uploaded will be kept on panther.
+Test Cases dealing the with login
+
+ 
+Test case ID: TC_MI_01
+
+ 
+
+Test objective: 
+
+Successful Employee login to OrangeHRM portal
+
+Precondition:
+
+1. A valid ESS-User account to login to be available
+
+2. Orange HRM 3.0 site is launched on a compatible browser
+
+Steps:
+
+1. In the login Panel, enter the username  (Test Data: "A valid username"")
+
+2. Enter the Password for the ESS-User account in the password field (Test data: "A valid Password")
+
+3. Click "Login" button
+
+Expected Result:
+
+The user is logged in successfully.  For first time users personal information is displayed. (There is only one expected result for the entire test case. However, that does not have to be so. If it makes sense that for every step, you want to write the result of exactly what happens with it, please free to have an expected result for each test step)
+
+ 
+Test case ID: TC_MI_012
+
+ 
+
+Test objective: 
+
+Error message on unsuccessful Employee login to OrangeHRM portal
+
+Precondition:
+
+1. A ESS-User name to login to be available
+
+2. Orange HRM 3.0 site is launched on a compatible browser
+
+Steps:
+
+1. In the login Panel, enter the username  (Test Data: "A valid username"")
+
+2. Enter the Password for the ESS-User account in the password field (Test data: "An invalid Password")
+
+3. Click "Login" button
+
+Expected Result:
+
+An Error message is displayed and the user is not logged in to the Orange HRM portal. "<Exact Error Message>"
+
+(In the test case, it is not  enough when we say, 'that an error is displayed'- in addition to that, we will have to mention the exact error message that is going to be encountered by the user- This information can generally be found in FRD(SRS). If not, look in the technical design document or Use cases )
+
+ 
+Test Cases dealing the with adding and changing accounts
+
+ 
+Test case ID: TC_MI_MIM_02
+
+ 
+
+Test objective: 
+
+Personal details- modification with valid values- "First Name"
+
+Precondition:
+
+1.       Orange HRM 3.0 site is launched on a compatible browser and a ESS User account holder is logged in to the site(The precondition can be used to avoid repeating steps 1, 2 and 3 as in the previous test case. However, if you are more comfortable having the login steps as well, that is ok too.)
+
+Steps:
+
+1. Check the fields on the "Personal information Page"
+
+2. Change the field, "First Name" with enter a valid new name in this field. ("A valid new value for the first name field")
+
+3. Click on "Save"
+
+ 
+
+Expected Result:
+
+Check if the following fields are disabled for entry in Personal Details:
+
+·         ● Employee ID
+
+·         ● SSN No
+
+·         ● SIN No
+
+·         ● Driver License No
+
+·         ● Date of Birth
+
+ The first name field needs to now show the new value entered
+
+Query the database to ensure the new name is updated.
+
+* This is how all the other field's modification can be tested. Be sure to include negative test cases, where an invalid data can be entered as the new value and an error message is observed
+Test case ID: TC_MI_P_03
+
+ 
+
+Test objective: 
+
+Check the upload of a invalid format of the picture (may be a .doc file) that is less than 1 MB
+
+Precondition:
+
+1. Orange HRM 3.0 site is launched on a compatible browser and a ESS User account holder is logged in to the site
+
+2. A doc file is available that is less than 1 MB
+
+Steps:
+
+1.       Click on the photograph displayed at the top left corner of the page
+
+2.       Click on "Choose a file" button
+
+3.       Choose the doc file that is less than 1 MB (Test data: Name of the image Location-path on the machine)
+
+4.       Click on upload
+
+Expected Result:
+
+·         The "Photograph screen" will be displayed
+
+·         You will be able to browse your local machine for images
+
+·         The file name is selected in the "Choose a file" box
+
+·         An error message is displayed that the format is not supported- <The exact error message>
+
+ 
+
+
+OrangeHRM Portal
+
+System Test Plan - Test Cases
+
+By Kris Pepper
+
+Version 1
+
+A note for students:
+
+This is a rework of a test plan found on : http://www.softwaretestinghelp.com/writing-test-cases-from-srs-software-testing-qa-training-day-4/ but changed by Pepper for CSC480
+
+For this deliverable, you need word document format, but the excel format above is very useful in business situations.
+
+ 
+
+Table of Contents
+
+Contents
+
+Preface
+
+System Description
+
+Test Environment
+
+Test Cases dealing the with login
+
+Test case ID: TC_MI_01
+
+Test case ID: TC_MI_012
+
+Test Cases dealing the with adding and changing accounts
+
+Test case ID: TC_MI_MIM_02
+
+Test case ID: TC_MI_P_03
+
+ 
+
+ 
+Preface
+
+The test team consisting of both OrangeHRM System users and programmers are intended to use this document.
+
+Author
+	
+
+Revision Date
+	
+
+Reason
+
+Kristin Pepper
+	
+
+4/4/2015
+	
+
+Initial Release
+
+ 
+	
+
+ 
+	
+
+ 
+
+ 
+
+ 
+System Description
+
+The OrangeHRM System is a web based manages employee photos. Employees can add or change their own photos and Human Resources can add or change everyone's photos. The system produces lists of photos by different selection criteria. Its photos will be used by many other systems in the company. The photos are stored in a configurable file structure and the photo location is pointed to by a file system.   This release only includes employee photos and name and address and social security information and not any of the other information planned for later.
+Test Environment
+
+The OrangeHRM System will be tested on panther in a development web site. Testers will access the site from different browsers locally on their pc and from a mac.  Results will be checked by querying the database, examining the picture files on panther and checking subsequent web inquiries and reports. The database and files will be partially filled when the test starts. A starting database script and a copy of the starting files as well as all the pictures to be uploaded will be kept on panther.
+Test Cases dealing the with login
+
+ 
+Test case ID: TC_MI_01
+
+ 
+
+Test objective: 
+
+Successful Employee login to OrangeHRM portal
+
+Precondition:
+
+1. A valid ESS-User account to login to be available
+
+2. Orange HRM 3.0 site is launched on a compatible browser
+
+Steps:
+
+1. In the login Panel, enter the username  (Test Data: "A valid username"")
+
+2. Enter the Password for the ESS-User account in the password field (Test data: "A valid Password")
+
+3. Click "Login" button
+
+Expected Result:
+
+The user is logged in successfully.  For first time users personal information is displayed. (There is only one expected result for the entire test case. However, that does not have to be so. If it makes sense that for every step, you want to write the result of exactly what happens with it, please free to have an expected result for each test step)
+
+ 
+Test case ID: TC_MI_012
+
+ 
+
+Test objective: 
+
+Error message on unsuccessful Employee login to OrangeHRM portal
+
+Precondition:
+
+1. A ESS-User name to login to be available
+
+2. Orange HRM 3.0 site is launched on a compatible browser
+
+Steps:
+
+1. In the login Panel, enter the username  (Test Data: "A valid username"")
+
+2. Enter the Password for the ESS-User account in the password field (Test data: "An invalid Password")
+
+3. Click "Login" button
+
+Expected Result:
+
+An Error message is displayed and the user is not logged in to the Orange HRM portal. "<Exact Error Message>"
+
+(In the test case, it is not  enough when we say, 'that an error is displayed'- in addition to that, we will have to mention the exact error message that is going to be encountered by the user- This information can generally be found in FRD(SRS). If not, look in the technical design document or Use cases )
+
+ 
+Test Cases dealing the with adding and changing accounts
+
+ 
+Test case ID: TC_MI_MIM_02
+
+ 
+
+Test objective: 
+
+Personal details- modification with valid values- "First Name"
+
+Precondition:
+
+1.       Orange HRM 3.0 site is launched on a compatible browser and a ESS User account holder is logged in to the site(The precondition can be used to avoid repeating steps 1, 2 and 3 as in the previous test case. However, if you are more comfortable having the login steps as well, that is ok too.)
+
+Steps:
+
+1. Check the fields on the "Personal information Page"
+
+2. Change the field, "First Name" with enter a valid new name in this field. ("A valid new value for the first name field")
+
+3. Click on "Save"
+
+ 
+
+Expected Result:
+
+Check if the following fields are disabled for entry in Personal Details:
+
+·         ● Employee ID
+
+·         ● SSN No
+
+·         ● SIN No
+
+·         ● Driver License No
+
+·         ● Date of Birth
+
+ The first name field needs to now show the new value entered
+
+Query the database to ensure the new name is updated.
+
+* This is how all the other field's modification can be tested. Be sure to include negative test cases, where an invalid data can be entered as the new value and an error message is observed
+Test case ID: TC_MI_P_03
+
+ 
+
+Test objective: 
+
+Check the upload of a invalid format of the picture (may be a .doc file) that is less than 1 MB
+
+Precondition:
+
+1. Orange HRM 3.0 site is launched on a compatible browser and a ESS User account holder is logged in to the site
+
+2. A doc file is available that is less than 1 MB
+
+Steps:
+
+1.       Click on the photograph displayed at the top left corner of the page
+
+2.       Click on "Choose a file" button
+
+3.       Choose the doc file that is less than 1 MB (Test data: Name of the image Location-path on the machine)
+
+4.       Click on upload
+
+Expected Result:
+
+·         The "Photograph screen" will be displayed
+
+·         You will be able to browse your local machine for images
+
+·         The file name is selected in the "Choose a file" box
+
+·         An error message is displayed that the format is not supported- <The exact error message>
+
+ 
+
+
+OrangeHRM Portal
+
+System Test Plan - Test Cases
+
+By Kris Pepper
+
+Version 1
+
+A note for students:
+
+This is a rework of a test plan found on : http://www.softwaretestinghelp.com/writing-test-cases-from-srs-software-testing-qa-training-day-4/ but changed by Pepper for CSC480
+
+For this deliverable, you need word document format, but the excel format above is very useful in business situations.
+
+ 
+
+Table of Contents
+
+Contents
+
+Preface
+
+System Description
+
+Test Environment
+
+Test Cases dealing the with login
+
+Test case ID: TC_MI_01
+
+Test case ID: TC_MI_012
+
+Test Cases dealing the with adding and changing accounts
+
+Test case ID: TC_MI_MIM_02
+
+Test case ID: TC_MI_P_03
+
+ 
+
+ 
+Preface
+
+The test team consisting of both OrangeHRM System users and programmers are intended to use this document.
+
+Author
+	
+
+Revision Date
+	
+
+Reason
+
+Kristin Pepper
+	
+
+4/4/2015
+	
+
+Initial Release
+
+ 
+	
+
+ 
+	
+
+ 
+
+ 
+
+ 
+System Description
+
+The OrangeHRM System is a web based manages employee photos. Employees can add or change their own photos and Human Resources can add or change everyone's photos. The system produces lists of photos by different selection criteria. Its photos will be used by many other systems in the company. The photos are stored in a configurable file structure and the photo location is pointed to by a file system.   This release only includes employee photos and name and address and social security information and not any of the other information planned for later.
+Test Environment
+
+The OrangeHRM System will be tested on panther in a development web site. Testers will access the site from different browsers locally on their pc and from a mac.  Results will be checked by querying the database, examining the picture files on panther and checking subsequent web inquiries and reports. The database and files will be partially filled when the test starts. A starting database script and a copy of the starting files as well as all the pictures to be uploaded will be kept on panther.
+Test Cases dealing the with login
+
+ 
+Test case ID: TC_MI_01
+
+ 
+
+Test objective: 
+
+Successful Employee login to OrangeHRM portal
+
+Precondition:
+
+1. A valid ESS-User account to login to be available
+
+2. Orange HRM 3.0 site is launched on a compatible browser
+
+Steps:
+
+1. In the login Panel, enter the username  (Test Data: "A valid username"")
+
+2. Enter the Password for the ESS-User account in the password field (Test data: "A valid Password")
+
+3. Click "Login" button
+
+Expected Result:
+
+The user is logged in successfully.  For first time users personal information is displayed. (There is only one expected result for the entire test case. However, that does not have to be so. If it makes sense that for every step, you want to write the result of exactly what happens with it, please free to have an expected result for each test step)
+
+ 
+Test case ID: TC_MI_012
+
+ 
+
+Test objective: 
+
+Error message on unsuccessful Employee login to OrangeHRM portal
+
+Precondition:
+
+1. A ESS-User name to login to be available
+
+2. Orange HRM 3.0 site is launched on a compatible browser
+
+Steps:
+
+1. In the login Panel, enter the username  (Test Data: "A valid username"")
+
+2. Enter the Password for the ESS-User account in the password field (Test data: "An invalid Password")
+
+3. Click "Login" button
+
+Expected Result:
+
+An Error message is displayed and the user is not logged in to the Orange HRM portal. "<Exact Error Message>"
+
+(In the test case, it is not  enough when we say, 'that an error is displayed'- in addition to that, we will have to mention the exact error message that is going to be encountered by the user- This information can generally be found in FRD(SRS). If not, look in the technical design document or Use cases )
+
+ 
+Test Cases dealing the with adding and changing accounts
+
+ 
+Test case ID: TC_MI_MIM_02
+
+ 
+
+Test objective: 
+
+Personal details- modification with valid values- "First Name"
+
+Precondition:
+
+1.       Orange HRM 3.0 site is launched on a compatible browser and a ESS User account holder is logged in to the site(The precondition can be used to avoid repeating steps 1, 2 and 3 as in the previous test case. However, if you are more comfortable having the login steps as well, that is ok too.)
+
+Steps:
+
+1. Check the fields on the "Personal information Page"
+
+2. Change the field, "First Name" with enter a valid new name in this field. ("A valid new value for the first name field")
+
+3. Click on "Save"
+
+ 
+
+Expected Result:
+
+Check if the following fields are disabled for entry in Personal Details:
+
+·         ● Employee ID
+
+·         ● SSN No
+
+·         ● SIN No
+
+·         ● Driver License No
+
+·         ● Date of Birth
+
+ The first name field needs to now show the new value entered
+
+Query the database to ensure the new name is updated.
+
+* This is how all the other field's modification can be tested. Be sure to include negative test cases, where an invalid data can be entered as the new value and an error message is observed
+Test case ID: TC_MI_P_03
+
+ 
+
+Test objective: 
+
+Check the upload of a invalid format of the picture (may be a .doc file) that is less than 1 MB
+
+Precondition:
+
+1. Orange HRM 3.0 site is launched on a compatible browser and a ESS User account holder is logged in to the site
+
+2. A doc file is available that is less than 1 MB
+
+Steps:
+
+1.       Click on the photograph displayed at the top left corner of the page
+
+2.       Click on "Choose a file" button
+
+3.       Choose the doc file that is less than 1 MB (Test data: Name of the image Location-path on the machine)
+
+4.       Click on upload
+
+Expected Result:
+
+·         The "Photograph screen" will be displayed
+
+·         You will be able to browse your local machine for images
+
+·         The file name is selected in the "Choose a file" box
+
+·         An error message is displayed that the format is not supported- <The exact error message>
+
+ 
