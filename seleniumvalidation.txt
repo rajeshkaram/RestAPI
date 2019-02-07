@@ -291,8 +291,32 @@ driver.switchTo().window(tabs.get(0));
 driver.switchTo().window(mainWindowHandle);
 
 ******************************************************************************************************
+ window handling
+ 
+ System.setProperty("webdriver.chrome.driver", "E:\\completerajesh\\automation\\chromedriver.exe");	
+		driver = new ChromeDriver(); 
+		driver.get("https://projects.qedgetech.com/banking");
+		String parentHandle = driver.getWindowHandle(); // get the current window handle
+		driver.findElement(By.xpath("//*[@id=\'post-81\']/div/div[3]/div[1]/p[6]/strong/a")).click(); // click some link that opens a new window
 
-ublic class test {
+		for (String winHandle : driver.getWindowHandles()) {
+		    driver.switchTo().window(winHandle); // switch focus of WebDriver to the next found window handle (that's your newly opened window)
+		}
+
+		//code to do something on new window
+
+		//driver.close(); // close newly opened window when done with it
+		//driver.switchTo().window(parentHandle); // switch back to the original window
+		driver.findElement(By.xpath("//*[@id='txtuId']")).sendKeys("Admin");
+		
+
+
+
+
+
+************************************************************************************************************
+
+public class test {
 //@Test
 	public void verifyradiobutton() {
 		//verify radio button equals attribute value
