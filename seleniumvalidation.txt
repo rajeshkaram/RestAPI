@@ -408,4 +408,19 @@ for(int l = 0; l < itemCount; l++)
 }
 	
 *******************************************************************************************************
+hidden elements
 
+List<webelement>radio=driver.findElement(By.id("male"));
+int count=radio.size();
+System.out.println("Total radio button"+count);
+for(int i=0;i<count;i++)
+{
+webelement ele=radio.get(i);
+int x=ele.getLocation().getx();
+if(x!=0)
+{
+ele.click();
+break;
+}
+}
+********************************************************************************************************
