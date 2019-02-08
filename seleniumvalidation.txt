@@ -424,3 +424,51 @@ break;
 }
 }
 ********************************************************************************************************
+
+driver.get("https://www.flipkart.com/");
+	
+	
+	//links--//a href<http://www.google.com
+		//images--//img href<http://www.test.com>
+		//1.get the list of all the links and images:500
+		List<WebElement>linkslist=driver.findElements(By.tagName("a"));
+		linkslist.addAll( driver.findElements(By.tagName("img")));
+		System.out.println("size of afull links and images---->"+linkslist.size());
+
+		List<WebElement>activelinks=new ArrayList<WebElement>();//450
+
+		//2.itearate linkslist:exclude all the links/images-doesnot have any href attributes
+
+		for(int i=0;i<linkslist.size();i++){
+
+		System.out.println(linkslist.get(i).getAttribute("href"));
+		if(linkslist.get(i).getAttribute("href")!=null && (!linkslist.get(i).getAttribute("href").contains("javascript"))){
+		activelinks.add(linkslist.get(i));
+		}
+		}
+
+		//get the size of active links list:
+
+		System.out.println("size of active links and images------>"+activelinks.size());
+
+
+		//3.check the href url, with httpconnection api:
+
+		//200---ok
+		//404--not found
+		//500--internal error
+		//400--bad request
+
+		for(int j=0;j<activelinks.size();j++){
+
+		HttpURLConnection connection=(HttpURLConnection)new URL(activelinks.get(j).getAttribute("href")).openConnection();
+		connection.connect();
+		String response=connection.getResponseMessage();//ok
+		connection.disconnect();
+		System.out.println(activelinks.get(j).getAttribute("href")+"------>"+response);
+	}
+
+	
+}
+}
+
