@@ -373,7 +373,39 @@ public void verifytooltip() {
 
 *********************************************************************************************************************
 	
+To select all checkbox in bootstrap
 
+driver.get(url)
+driver.findElement(By.xpath("//button[contains(@class,'multiselect)]")).click();
+List<Webelement>list=driver.findEelent(By.xpath("//ul[contains(@class,'mutiselect-container')]//i//a//label"));
+system.out.println(list.size());
+for(int i=0;i<list.size();i++){
+
+system.out.println(list.get(i).getText());
+list.get(i).click();
+}
+
+particular boostrap select any checkbox
+for(int i=0;i<list.size();i++){
+
+system.out.println(list.get(i).getText());
+if(list.get(i).getText().contains("Angular")){
+
+list.get(i).click();
+break;
+}
+
+*******************************************************************************************************
+select drop down and print the values in console
+
+ Select dropDown = new Select(Driver.findElement()));
+List<WebElement> e = dropDown.getOptions();
+int itemCount = e.size();
+
+for(int l = 0; l < itemCount; l++)
+{
+    System.out.println(e.get(l).getText());
+}
 	
-
+*******************************************************************************************************
 
