@@ -494,3 +494,1567 @@ String baseUrl = "http://demo.guru99.com/test/tooltip.html";
         System.out.println("Test Case Passed");					
     }		
     driver.close();
+    ******************************************************************************************************************
+    WebDriver driver;
+	String month="March 2020";
+	String date="21";
+	@Test
+	public void datepicker() throws InterruptedException {
+	System.setProperty("webdriver.chrome.driver", "E:\\completerajesh\\automation\\chromedriver.exe");	
+	driver = new ChromeDriver(); 
+	
+	driver.get("http://www.phptravels.net/");
+	driver.manage().window().maximize();
+	driver.findElement(By.xpath("//input[@type='text' and @placeholder='Check in' and @class='form input-lg dpd1' ]")).click();
+	WebElement mon=driver.findElement(By.xpath("//div[@class='datepicker dropdown-menu'][1]//div[1]//thead//tr[1]//th[2]"));
+	while(true) {
+		
+		if(mon.getText().equals(month)) {
+			break;
+			
+		}
+		
+		else {
+			
+			driver.findElement(By.xpath("//div[@class='datepicker dropdown-menu'][1]//div[1]//thead//tr[1]//th[3]")).click();
+			Thread.sleep(1000);
+			
+			
+		}
+	}
+	
+	driver.findElement(By.xpath("//div[@class='datepicker dropdown-menu'][1]//div[1]//tbody//tr[4]//td[text()='"+date+"']")).click();
+}
+}
+    ******************************************************************************************************************
+    
+    webtables printing rows and columns
+    
+    
+    Step 2: Get all the rows with tag name ‘tr’ and store all the elements in a list of web elements. Now all the elements with tag ‘tr’ are stored in ‘rows’ list.
+
+    //Finding & Printing number of rows
+
+    List<WebElement>rows=webtable.findElements(By.tagName(“tr”));
+
+    System.out.println(“Number of Rows including headings:”+ rows.size());
+
+Step 3: Get the number of columns. Here we have used “tagName” of columns – “th”. Please note that this represents the heading row only.
+
+    //Finding and printing number of columns
+    List<WebElement>columns = rows.get(0).findElements(By.tagName(“th”));
+    System.out.println(“Number of columns:”+ columns.size());
+
+Step 4: Now, we can get to individual cells. But, first of all, we will print the headings.
+
+    //Finding & Printing the column headings
+
+    for(int cnum=0;cnum<columns.size();cnum++)
+    {
+    System.out.println(columns.get(cnum).getText());
+    }
+
+
+
+ 
+
+Check Cell present or Not in Dynamic WebTable Handle using Selenium:
+import java.util.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Print_WebTable_Data {
+
+   public static void main(String args[]) {
+
+      System.setProperty("webdriver.chrome.driver", "Path to your chromedriver.exe");                       
+
+      WebDriver driver = new ChromeDriver();                       
+
+      driver.get("http://www.stqatools.com");                       
+
+      driver.manage().window().maximize();                       
+
+      // Identify the table
+      <a href="http://stqatools.com/selenium-webelement-commands/">WebElement</a> table = driver.findElement(By.id("tableId"));
+
+      // Get all rows (tr tags)
+      List<WebElement> rows = table.findElements(By.tagName("tr"));
+
+      String Expected = "CellName";  
+      // Print data from each row (Data from each td tag)
+
+      for (WebElement row : rows) {
+
+      List<WebElement> cols = row.findElements(By.tagName("td"));
+
+      for (WebElement col : cols) {
+
+              System.out.print(col.getText() + "\t");
+
+              String Actual = col.getText();                                               
+
+              // Check Expected Cell is present or not in WebTable
+              if (Actual.equals(Expected)) {
+
+                      System.out.println("Cell Exist in WebTable...");
+
+                    }
+                }
+
+            System.out.println();
+        }
+   }
+}
+
+
+Check Cell present or Not in Dynamic WebTable Handle using Selenium:	
+
+
+import java.util.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+ 
+public class Print_WebTable_Data {
+ 
+   public static void main(String args[]) {
+ 
+      System.setProperty("webdriver.chrome.driver", "Path to your chromedriver.exe");                       
+ 
+      WebDriver driver = new ChromeDriver();                       
+ 
+      driver.get("http://www.stqatools.com");                       
+ 
+      driver.manage().window().maximize();                       
+ 
+      // Identify the table
+      <a href="http://stqatools.com/selenium-webelement-commands/">WebElement</a> table = driver.findElement(By.id("tableId"));
+ 
+      // Get all rows (tr tags)
+      List<WebElement> rows = table.findElements(By.tagName("tr"));
+ 
+      String Expected = "CellName";  
+      // Print data from each row (Data from each td tag)
+ 
+      for (WebElement row : rows) {
+ 
+      List<WebElement> cols = row.findElements(By.tagName("td"));
+ 
+      for (WebElement col : cols) {
+ 
+              System.out.print(col.getText() + "\t");
+ 
+              String Actual = col.getText();                                               
+ 
+              // Check Expected Cell is present or not in WebTable
+              if (Actual.equals(Expected)) {
+ 
+                      System.out.println("Cell Exist in WebTable...");
+ 
+                    }
+                }
+ 
+            System.out.println();
+        }
+   }
+}
+***************************************************************************************************************
+http://stqatools.com/selenium-assert-and-verify/
+
+verify and assert
+
+Verify Text Present :
+
+    Before or after the testing phase, we need to see if specific text is displayed or not.
+
+
+
+	
+if(driver.getPageSource().contains("stqatools"))
+ 
+{
+ 
+System.out.println("Name is Present");
+ 
+}
+ 
+else
+ 
+{
+ 
+System.out.println("Name is not Present");
+ 
+}
+
+
+
+Assert Text Present :
+
+
+
+	
+assertTrue(driver.getPageSource().contains("stqatools"));
+
+
+
+Verify Element Present :
+
+    Verify element is present or not in Web Page using in-Built methods.
+
+	
+!driver.findElements(By.id("id")).isEmpty();
+ 
+// OR
+ 
+if(isElementPresent(By.linkText("Submit_Button")))
+ 
+{
+ 
+System.out.println("Submit_Button Link/Button found");
+ 
+}
+ 
+else
+ 
+{
+ 
+System.out.println("Submit_Button Link/Button not found");
+ 
+}
+
+
+
+
+Assert Element Present :
+
+    Assert element is present or not, If not present then then Halt process.
+
+assertTrue(isElementPresent(By.cssSelector("div.stqatools")));
+
+	
+
+Example: Verify string using assertTrue.
+String str = driver.findElement(By.xpath("xpath")).getText();
+
+assertTrue(actualString.contains("specific text"));
+
+	
+String str = driver.findElement(By.xpath("xpath")).getText();
+ 
+assertTrue(actualString.contains("specific text"));
+ 
+
+example assert
+
+
+	
+import static org.testng.Assert.assertEquals;
+import java.util.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+ 
+public class Assert_Example {
+ 
+    public static void main(String args[]) {
+ 
+       String Actual = "Actual";
+       String Expected = "Expected";
+ 
+       // Assertion Passing
+       Assert.assertTrue(Actual == Actual);
+ 
+       System.out.println("Passing 1");
+ 
+       // Assertion failing
+       Assert.fail("Failing 2");
+ 
+       System.out.println("Failing 2");
+ 
+       // Check Assert Equals
+       assertEquals(Actual, Expected);
+   }
+}
+
+example verify 
+
+	
+import org.testng.asserts.SoftAssert;
+ 
+public class Verify_Example {
+ 
+   public static void main(String args[]) {
+ 
+      // Creating softAssert object
+      SoftAssert softAssert = new SoftAssert();
+ 
+      // Assertion failing
+      softAssert.fail("Failing first assertion");
+ 
+      System.out.println("Failing 1");    
+   }
+}
+
+***************************************************************************************************************
+iframes
+
+
+Identification of a iframe on WebPage:
+
+    Right-click on the element. Check if “This Frame” option is available. It means this is a iFrame.
+
+    Right click and click on Inspect then View page source of the web page and check if  “iFrame” tag is Available or Not?
+
+ 
+Switch to iFrame using Multiple ways:
+
+    By Index
+    By Name or Id
+    By Web Element
+
+ 
+
+You need to first find iFrame. You can do so using following statement:
+
+    Find iFrame with tagName and store into WebElement to Perform operation on it.
+
+WebElement iFrame= driver.findElement(By.tagName("iframe"));
+
+	
+WebElement iFrame= driver.findElement(By.tagName("iframe"));
+
+ 
+
+1. By index, if  one or more frames present:
+
+    Using switchTo Method we can Move / Switch WebDriver Instance / Object from one frame to other using index of iFrame.
+
+Syntax:  driver.switchTo().frame(int x);
+
+Example: driver.switchTo().frame(1);
+
+	
+Syntax:  driver.switchTo().frame(int x);
+ 
+Example: driver.switchTo().frame(1);
+
+ 
+
+2. By Name or ID:
+
+    Using switchTo Method we can Move / Switch WebDriver Instance / Object from one frame to other using Frame Name of iFrame.
+
+Syntax:  driver.switchTo().frame(String frameName);
+
+Example: driver.switchTo().frame(frameName);
+
+	
+Syntax:  driver.switchTo().frame(String frameName);
+ 
+Example: driver.switchTo().frame(frameName);
+
+ 
+
+3. By WebElement locator:
+
+    Using switchTo Method we can Move / Switch WebDriver Instance / Object from one frame to other using WebElement Locator of iFrame.
+
+Syntax:   driver.switchTo().frame(WebElement element);
+
+Example: driver.switchTo().frame(iFrame);
+
+	
+Syntax:   driver.switchTo().frame(WebElement element);
+ 
+Example: driver.switchTo().frame(iFrame);
+
+ 
+
+Switch to one frame to another Frame:
+
+    Using switchTo Method using Two times we can switch from one iFrame to other iFrame.
+
+driver.switchTo().frame(ParentFrame).switchTo().frame(ChildFrame);
+1
+	
+driver.switchTo().frame(ParentFrame).switchTo().frame(ChildFrame);
+
+ 
+Switch to Main / Parent Frame:
+
+    After perform operation on iFrame we have need to Move back into Parent frame that time we switchTo into parentFrame / defaultContent.
+
+// Move back to the parent frame, you can either use
+driver.switchTo().parentFrame();
+
+// Get back to the main (or most parent) frame
+driver.switchTo().defaultContent();
+
+	
+// Move back to the parent frame, you can either use
+driver.switchTo().parentFrame();
+ 
+// Get back to the main (or most parent) frame
+driver.switchTo().defaultContent();
+
+ 
+Scenario’s To Handle iFrame:
+
+    Inspect if the element is within an iFrame.
+    Switch to the iFrame.
+    Identify and then perform the required operation on the element.
+    Switch back to main web page.
+
+Example of Handle iframe in Selenium:
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Tab_Handle_ForEach {
+
+	public static void main(String[] args) {
+
+		System.setProperty("webdriver.firefox.marionette", "C:\\geckodriver.exe");
+
+		WebDriver driver = new FirefoxDriver();
+
+		driver.get("http://www.stqatools.com");
+
+		// Click on link to open iFrame
+		driver.findElement(By.id("iFrame_Name")).click();
+
+		// Switch to Frame
+		driver.switchTo().frame("iframe");
+
+		// Perform operation on Frame
+		driver.findElement(By.id("tinymce")).sendKeys("Text_To_frame");
+
+		// Switch back to defaultContent
+		driver.switchTo().defaultContent();
+
+		// Switch between one frame to another
+		driver.switchTo().frame("iframe_1").switchTo().frame("iframe_2");
+
+	}
+
+}
+
+	
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+ 
+public class Tab_Handle_ForEach {
+ 
+	public static void main(String[] args) {
+ 
+		System.setProperty("webdriver.firefox.marionette", "C:\\geckodriver.exe");
+ 
+		WebDriver driver = new FirefoxDriver();
+ 
+		driver.get("http://www.stqatools.com");
+ 
+		// Click on link to open iFrame
+		driver.findElement(By.id("iFrame_Name")).click();
+ 
+		// Switch to Frame
+		driver.switchTo().frame("iframe");
+ 
+		// Perform operation on Frame
+		driver.findElement(By.id("tinymce")).sendKeys("Text_To_frame");
+ 
+		// Switch back to defaultContent
+		driver.switchTo().defaultContent();
+ 
+		// Switch between one frame to another
+		driver.switchTo().frame("iframe_1").switchTo().frame("iframe_2");
+ 
+	}
+ 
+}
+
+ Switch to iFrame using Multiple ways:
+
+    By Index
+    By Name or Id
+    By Web Element
+
+ 
+
+You need to first find iFrame. You can do so using following statement:
+
+    Find iFrame with tagName and store into WebElement to Perform operation on it.
+
+WebElement iFrame= driver.findElement(By.tagName("iframe"));
+1
+	
+WebElement iFrame= driver.findElement(By.tagName("iframe"));
+
+ 
+
+1. By index, if  one or more frames present:
+
+    Using switchTo Method we can Move / Switch WebDriver Instance / Object from one frame to other using index of iFrame.
+
+Syntax:  driver.switchTo().frame(int x);
+
+Example: driver.switchTo().frame(1);
+
+	
+Syntax:  driver.switchTo().frame(int x);
+ 
+Example: driver.switchTo().frame(1);
+
+ 
+
+2. By Name or ID:
+
+    Using switchTo Method we can Move / Switch WebDriver Instance / Object from one frame to other using Frame Name of iFrame.
+
+Syntax:  driver.switchTo().frame(String frameName);
+
+Example: driver.switchTo().frame(frameName);
+
+	
+Syntax:  driver.switchTo().frame(String frameName);
+ 
+Example: driver.switchTo().frame(frameName);
+
+ 
+
+3. By WebElement locator:
+
+    Using switchTo Method we can Move / Switch WebDriver Instance / Object from one frame to other using WebElement Locator of iFrame.
+
+Syntax:   driver.switchTo().frame(WebElement element);
+
+Example: driver.switchTo().frame(iFrame);
+
+	
+Syntax:   driver.switchTo().frame(WebElement element);
+ 
+Example: driver.switchTo().frame(iFrame);
+
+ 
+
+Switch to one frame to another Frame:
+
+    Using switchTo Method using Two times we can switch from one iFrame to other iFrame.
+
+driver.switchTo().frame(ParentFrame).switchTo().frame(ChildFrame);
+
+	
+driver.switchTo().frame(ParentFrame).switchTo().frame(ChildFrame);
+
+ 
+Switch to Main / Parent Frame:
+
+    After perform operation on iFrame we have need to Move back into Parent frame that time we switchTo into parentFrame / defaultContent.
+
+// Move back to the parent frame, you can either use
+driver.switchTo().parentFrame();
+
+// Get back to the main (or most parent) frame
+driver.switchTo().defaultContent();
+	
+// Move back to the parent frame, you can either use
+driver.switchTo().parentFrame();
+ 
+// Get back to the main (or most parent) frame
+driver.switchTo().defaultContent();
+
+ *************************************************************************************************************
+alerts
+
+
+
+What is Alert?
+
+    Alert is a small message box that displays on-screen notifications to give the user some kind of information or asks for permission to perform some type of operation.
+
+    It can also be used for warning purposes.
+
+ 
+
+Type of Operation’s perform on Alert:
+
+    accept() : To accept the alert.
+
+    dismiss() : To dismiss the alert.
+
+    getText() : To get the text of the alert.
+
+    sendKeys() : To write some text to the alert.
+
+ 
+
+Switch to Alert to perform some operation on Alert:
+Alert alert = driver.switchTo().alert();
+
+	
+Alert alert = driver.switchTo().alert();
+
+ 
+
+There are 3 types of Alert box:
+
+    Simple Alert :- It give the some information about the current screen or give some warning.
+    Prompt Alert :- It Ask from the User to provide some inputs.
+    Confirmation Alert :- This Alert box ask for a permission to perform some type of operation.
+
+ 
+
+Package:
+import org.openqa.selenium.Alert;
+
+	
+import org.openqa.selenium.Alert;
+
+ 
+Alert Accept:
+
+void accept() :- It allow programmer to click on the ‘OK’ Button of the Alert box.
+driver.switchTo().alert().accept();
+
+	
+driver.switchTo().alert().accept();
+
+ 
+Alert Dismiss:
+
+void dismiss() :- It allow programmer to click on the ‘Cancel’ button of the Alert box.
+driver.switchTo().alert().dismiss();
+
+	
+driver.switchTo().alert().dismiss();
+
+ 
+Get Alert Text:
+
+String getText() :- It simply allow programmer to capture the alert box.
+driver.switchTo().alert().getText();
+
+	
+driver.switchTo().alert().getText();
+
+ 
+Send Text To Alert:
+
+void sendKeys(String stringToSend) :- It allow programmer to send data into alert box.
+driver.switchTo().alert().sendKeys(“Text”);
+
+	
+driver.switchTo().alert().sendKeys(“Text”);
+
+ 
+
+Note: To Handle Window go to this Link.
+
+ 
+
+Scenario’s:
+
+    setProperty To Launch Browser.
+
+    Open URL.
+
+    Click on WebElement to Open Alert / PopUP.
+
+    After click on WebElment create object of Alert to switch into Alert / PopUP.
+
+    Perform Accept operation on WebElement.
+
+    Perform Dismiss operation on WebElement.
+
+    Perform GetText operation on WebElement.
+
+    Perform sendKeys operation on WebElement.
+
+ 
+
+Example of Handle Alert and PopUp Using selenium:
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Alert_Popup_Handle {
+
+public static void main(String[] args) {
+
+System.setProperty("webdriver.gecko.driver","D:\\geckodriver.exe");
+
+WebDriver driver = new FirefoxDriver();
+
+driver.get("http://www.stqatools.com");
+
+// Click on button to show Alert
+driver.findElement(By.id("Alert_ID")).click();
+
+// Switch to Alert to perform some operation
+Alert alert = driver.switchTo().alert();
+
+// Accept alert
+driver.switchTo().alert().accept();
+
+// Dismiss alert
+driver.switchTo().alert().dismiss();
+
+// GetText of alert
+driver.switchTo().alert().getText();
+
+// SendKeys to particular alert
+driver.switchTo().alert().sendKeys("Sandeep");
+
+}
+
+}
+	
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+ 
+public class Alert_Popup_Handle {
+ 
+public static void main(String[] args) {
+ 
+System.setProperty("webdriver.gecko.driver","D:\\geckodriver.exe");
+ 
+WebDriver driver = new FirefoxDriver();
+ 
+driver.get("http://www.stqatools.com");
+ 
+// Click on button to show Alert
+driver.findElement(By.id("Alert_ID")).click();
+ 
+// Switch to Alert to perform some operation
+Alert alert = driver.switchTo().alert();
+ 
+// Accept alert
+driver.switchTo().alert().accept();
+ 
+// Dismiss alert
+driver.switchTo().alert().dismiss();
+ 
+// GetText of alert
+driver.switchTo().alert().getText();
+ 
+// SendKeys to particular alert
+driver.switchTo().alert().sendKeys("Sandeep");
+ 
+}
+ 
+}
+
+ ***************************************************************************************************************
+ Mouse Hover Action in Selenium:
+
+// Create object of Action class
+Actions action = new Actions(driver);
+
+// Find element using locator and store into WebElement
+WebElement element = driver.findElement(By.id("elementId"));
+
+// Perform moveToElement operation using action (object) on element.
+action.moveToElement(element).perform();
+
+	
+// Create object of Action class
+Actions action = new Actions(driver);
+ 
+// Find element using locator and store into WebElement
+WebElement element = driver.findElement(By.id("elementId"));
+ 
+// Perform moveToElement operation using action (object) on element.
+action.moveToElement(element).perform();
+
+ 
+Mouse Hover and Click on WebElement:
+
+// Find element using locator and store into WebElement
+WebElement elementToHover = driver.findElement(By.id("elementToHover "));
+
+// Find element using locator and store into WebElement
+WebElement elementToClick = driver.findElement(By.id("elementToClick "));
+
+// Create object of Action class
+Actions action = new Actions(driver);
+
+// Perform moveToElement operation using action (object) on element.
+action.moveToElement(elementToHover).click(elementToClick).build().perform();
+
+	
+// Find element using locator and store into WebElement
+WebElement elementToHover = driver.findElement(By.id("elementToHover "));
+ 
+// Find element using locator and store into WebElement
+WebElement elementToClick = driver.findElement(By.id("elementToClick "));
+ 
+// Create object of Action class
+Actions action = new Actions(driver);
+ 
+// Perform moveToElement operation using action (object) on element.
+action.moveToElement(elementToHover).click(elementToClick).build().perform();
+
+ 
+Example of Mouse Hover and Perform Click operation:
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Mouse_Hover {
+
+public static void main(String[] args) {
+
+System.setProperty("webdriver.gecko.driver","D:\\geckodriver.exe");
+
+WebDriver driver = new FirefoxDriver();
+
+driver.get("http://www.stqatools.com");
+
+// Find element using locator and store into WebElement
+WebElement elementToHover = driver.findElement(By.id("elementToHover "));
+
+// Find element using locator and store into WebElement
+WebElement elementToClick = driver.findElement(By.id("elementToClick "));
+
+// Create object of Action class
+Actions action = new Actions(driver);
+
+// Perform moveToElement operation using action (object) on element.
+action.moveToElement(elementToHover).click(elementToClick).build().perform();
+
+}
+
+}
+
+	
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+ 
+public class Mouse_Hover {
+ 
+public static void main(String[] args) {
+ 
+System.setProperty("webdriver.gecko.driver","D:\\geckodriver.exe");
+ 
+WebDriver driver = new FirefoxDriver();
+ 
+driver.get("http://www.stqatools.com");
+ 
+// Find element using locator and store into WebElement
+WebElement elementToHover = driver.findElement(By.id("elementToHover "));
+ 
+// Find element using locator and store into WebElement
+WebElement elementToClick = driver.findElement(By.id("elementToClick "));
+ 
+// Create object of Action class
+Actions action = new Actions(driver);
+ 
+// Perform moveToElement operation using action (object) on element.
+action.moveToElement(elementToHover).click(elementToClick).build().perform();
+ 
+}
+ 
+}
+
+  *******************************************************************************************************************
+  
+  waiting command in selenium
+  
+  
+  
+    Implicit Wait
+    Explicit Wait
+        sleep
+        WebDriverWait
+        PageLoadTimeout Command
+        SetScriptTimeout Command
+    FluentWait
+
+ 
+1. Implicit Wait:
+
+    Implicit Wait means informing selenium web driver to wait for specific amount of time.
+
+    If the web element is not visible after waiting for that specific point then throw “NoSuchElementException”.
+
+ 
+
+Syntax Of Implicit Wait:
+driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+1
+	
+driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+
+ 
+
+Example of Implicitlywait:
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+
+     public class ImplicitlyWait {
+
+     public static void main(String[] args) {
+
+     System.setProperty("webdriver.gecko.driver","D:\\geckodriver.exe");
+
+     WebDriver driver = new FirefoxDriver();
+
+     driver.get("http://www.stqatools.com");
+
+     // Wait 30 Seconds until Page loading
+     driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+   }
+}
+
+	
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+ 
+     public class ImplicitlyWait {
+ 
+     public static void main(String[] args) {
+ 
+     System.setProperty("webdriver.gecko.driver","D:\\geckodriver.exe");
+ 
+     WebDriver driver = new FirefoxDriver();
+ 
+     driver.get("http://www.stqatools.com");
+ 
+     // Wait 30 Seconds until Page loading
+     driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+   }
+}
+
+2. Explicit Wait:
+
+    In Explicit wait along with wait time we also provide the wait condition for particular WebElement.
+
+    It will wait till the condition or the maximum wait time provided before throwing the Exception “ElementNotVisibleException”.
+
+ 
+
+    Thread.sleep
+    WebDriverWait
+    PageLoadTimeout Command
+    SetScriptTimeout Command
+
+ 
+1. Thread.sleep Command
+
+    The sleep code always has to wait for the seconds mentioned within the bracket, even if the work page is ready after 5 seconds. So this test can slow down.
+
+ 
+
+Example:
+// Wait 5 Seconds
+Thread.sleep(5000);
+1
+2
+	
+// Wait 5 Seconds
+Thread.sleep(5000);
+
+ 
+
+Example of Thread.Sleep:
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+
+     public class Thread_Sleep_Wait {
+
+     public static void main(String[] args) {
+
+     System.setProperty(webdriver.gecko.driver","D:\\geckodriver.exe");
+
+     WebDriver driver = new FirefoxDriver();
+
+     driver.get("http://www.stqatools.com");
+
+     // Wait 5 Seconds Compulsory
+     Thread.sleep(5000);
+   }
+
+}
+
+	
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+ 
+     public class Thread_Sleep_Wait {
+ 
+     public static void main(String[] args) {
+ 
+     System.setProperty(webdriver.gecko.driver","D:\\geckodriver.exe");
+ 
+     WebDriver driver = new FirefoxDriver();
+ 
+     driver.get("http://www.stqatools.com");
+ 
+     // Wait 5 Seconds Compulsory
+     Thread.sleep(5000);
+   }
+ 
+}
+
+2. WebDriverWait
+
+    Before proceeding any operation, wait for a certain position before proceeding with the code.
+
+    Wait for the WebDriver to check whether the element exists or to operate on it, visible or enabled or disabled or clickable.
+
+// Create a Object wait of WebdriverWait class
+WebDriverWait wait = new WebDriverWait(driver,30); 
+
+// Using ExpectedConditions wait until element visibility
+wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("input")));
+
+	
+// Create a Object wait of WebdriverWait class
+WebDriverWait wait = new WebDriverWait(driver,30); 
+ 
+// Using ExpectedConditions wait until element visibility
+wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("input")));
+
+ 
+
+ExpectedConditions class can be useful in a lot of cases and provides some set of predefined condition to wait for the element. Here are some of them below:
+
+ 
+
+findElement using locator and store into WebElement element to use in ExpectedConditions class:
+WebElement element = driver.findElement(By.id("id"));
+1
+	
+WebElement element = driver.findElement(By.id("id"));
+
+ 
+
+alertIsPresent :
+// Wait until alert present on page
+
+wait.until(ExpectedConditions.alertIsPresent());
+
+	
+// Wait until alert present on page
+ 
+wait.until(ExpectedConditions.alertIsPresent());
+
+ 
+
+elementToBeClickable:
+// Wait until element to be clickable on page
+
+wait.until(ExpectedConditions.elementToBeClickable(element));
+
+	
+// Wait until element to be clickable on page
+ 
+wait.until(ExpectedConditions.elementToBeClickable(element));
+
+ 
+
+elementToBeSelected:
+// Wait until element to be selectable on page
+
+wait.until(ExpectedConditions.elementToBeSelected(element));
+
+	
+// Wait until element to be selectable on page
+ 
+wait.until(ExpectedConditions.elementToBeSelected(element));
+
+ 
+
+frameToBeAvailableAndSwitchToIt:
+// Wait until frame is available and frame selected.
+
+wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(element));
+
+	
+// Wait until frame is available and frame selected.
+ 
+wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(element));
+
+ 
+
+invisibilityOf:
+// Wait and check element is invisibility
+
+wait.until(ExpectedConditions.invisibilityOf(element));
+
+	
+// Wait and check element is invisibility
+ 
+wait.until(ExpectedConditions.invisibilityOf(element));
+
+ 
+
+presenceOfAllElementsLocatedBy:
+// Wait until present element located by.
+
+wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy((By) element));
+
+	
+// Wait until present element located by.
+ 
+wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy((By) element));
+
+ 
+
+textToBePresentInElement:
+// Wait until text present on particular an element
+
+wait.until(ExpectedConditions.textToBePresentInElement(element, "Text"));
+
+	
+// Wait until text present on particular an element
+ 
+wait.until(ExpectedConditions.textToBePresentInElement(element, "Text"));
+
+ 
+
+textToBePresentInElementValue:
+// Wait until element value present for a particular element.
+
+wait.until(ExpectedConditions.textToBePresentInElementValue(element, "Value"));
+
+	
+// Wait until element value present for a particular element.
+ 
+wait.until(ExpectedConditions.textToBePresentInElementValue(element, "Value"));
+
+ 
+
+visibilityOf:
+// check element visibility
+
+wait.until(ExpectedConditions.visibilityOf(element));
+
+	
+// check element visibility
+ 
+wait.until(ExpectedConditions.visibilityOf(element));
+
+ 
+
+titleContains:
+//  Wait and check title contains or not.
+
+wait.until(ExpectedConditions.titleContains("Tilte"));
+
+	
+//  Wait and check title contains or not.
+ 
+wait.until(ExpectedConditions.titleContains("Tilte"));
+
+ 
+
+Example of WebDriverWait:
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+
+public class WebDriver_Wait {
+
+public static void main(String[] args) {
+
+System.setProperty("webdriver.gecko.driver","D:\\geckodriver.exe");
+
+WebDriver driver = new FirefoxDriver();
+
+driver.get("http://www.stqatools.com");
+
+WebElement element = driver.findElement(By.id("id"));
+
+// Create a Object wait of WebdriverWait class
+WebDriverWait wait = new WebDriverWait(driver,30);
+
+// Using ExpectedConditions wait until element visibility
+wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("input")));
+
+// Wait until alert present on page
+wait.until(ExpectedConditions.alertIsPresent());
+
+// Wait until element to be clickable on page
+wait.until(ExpectedConditions.elementToBeClickable(element));
+
+// Wait until element to be selectable on page
+wait.until(ExpectedConditions.elementToBeSelected(element));
+
+// Wait until frame is available and frame selected.
+wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(element));
+
+// Wait and check element is invisibility
+wait.until(ExpectedConditions.invisibilityOf(element));
+
+// Wait until present element located by.
+wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy((By) element));
+
+// Wait until text present on particular an element
+wait.until(ExpectedConditions.textToBePresentInElement(element, "Text"));
+
+// Wait until element value present for a particular element.
+wait.until(ExpectedConditions.textToBePresentInElementValue(element, "Value"));
+
+// check element visibility
+wait.until(ExpectedConditions.visibilityOf(element));
+
+//  Wait and check title contains or not.
+wait.until(ExpectedConditions.titleContains("Tilte"));
+
+}
+
+}
+	
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+ 
+public class WebDriver_Wait {
+ 
+public static void main(String[] args) {
+ 
+System.setProperty("webdriver.gecko.driver","D:\\geckodriver.exe");
+ 
+WebDriver driver = new FirefoxDriver();
+ 
+driver.get("http://www.stqatools.com");
+ 
+WebElement element = driver.findElement(By.id("id"));
+ 
+// Create a Object wait of WebdriverWait class
+WebDriverWait wait = new WebDriverWait(driver,30);
+ 
+// Using ExpectedConditions wait until element visibility
+wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("input")));
+ 
+// Wait until alert present on page
+wait.until(ExpectedConditions.alertIsPresent());
+ 
+// Wait until element to be clickable on page
+wait.until(ExpectedConditions.elementToBeClickable(element));
+ 
+// Wait until element to be selectable on page
+wait.until(ExpectedConditions.elementToBeSelected(element));
+ 
+// Wait until frame is available and frame selected.
+wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(element));
+ 
+// Wait and check element is invisibility
+wait.until(ExpectedConditions.invisibilityOf(element));
+ 
+// Wait until present element located by.
+wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy((By) element));
+ 
+// Wait until text present on particular an element
+wait.until(ExpectedConditions.textToBePresentInElement(element, "Text"));
+ 
+// Wait until element value present for a particular element.
+wait.until(ExpectedConditions.textToBePresentInElementValue(element, "Value"));
+ 
+// check element visibility
+wait.until(ExpectedConditions.visibilityOf(element));
+ 
+//  Wait and check title contains or not.
+wait.until(ExpectedConditions.titleContains("Tilte"));
+ 
+}
+ 
+}
+
+ 
+3. PageLoadTimeout Command
+
+    Determines the amount of time to wait for the page load to complete before the error is thrown at the end of time.
+
+    If the timeout is negative, then the page load may be indefinite until the pageload.
+
+ 
+
+Example:
+driver.manage().timeouts().pageLoadTimeout(50, TimeUnit.SECONDS);
+
+	
+driver.manage().timeouts().pageLoadTimeout(50, TimeUnit.SECONDS);
+
+ 
+
+Example of PageLoadTimeout:
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class pageLoadTimeout_Wait {
+
+public static void main(String[] args) {
+
+System.setProperty("webdriver.gecko.driver","D:\\geckodriver.exe");
+
+WebDriver driver = new FirefoxDriver();
+
+driver.get("http://www.stqatools.com");
+
+driver.manage().timeouts().pageLoadTimeout(50, TimeUnit.SECONDS);
+
+}
+
+}
+
+	
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+ 
+public class pageLoadTimeout_Wait {
+ 
+public static void main(String[] args) {
+ 
+System.setProperty("webdriver.gecko.driver","D:\\geckodriver.exe");
+ 
+WebDriver driver = new FirefoxDriver();
+ 
+driver.get("http://www.stqatools.com");
+ 
+driver.manage().timeouts().pageLoadTimeout(50, TimeUnit.SECONDS);
+ 
+}
+ 
+}
+
+ 
+4. SetScriptTimeout Command
+
+    Before throwing an error, the amount of time is set to wait for the asynchronous script to complete the execution.
+
+    If timeout is negative, then the script will be allowed to run indefinitely.
+
+ 
+
+Example:
+driver.manage().timeouts().setScriptTimeout(500, TimeUnit.SECONDS);
+1
+	
+driver.manage().timeouts().setScriptTimeout(500, TimeUnit.SECONDS);
+
+ 
+
+Example of SetScriptTimeout:
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class setScriptTimeout_Wait {
+
+public static void main(String[] args) {
+
+System.setProperty("webdriver.gecko.driver","D:\\geckodriver.exe");
+
+WebDriver driver = new FirefoxDriver();
+
+driver.get("http://www.stqatools.com");
+
+driver.manage().timeouts().setScriptTimeout(500, TimeUnit.SECONDS);
+
+}
+
+}
+
+	
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+ 
+public class setScriptTimeout_Wait {
+ 
+public static void main(String[] args) {
+ 
+System.setProperty("webdriver.gecko.driver","D:\\geckodriver.exe");
+ 
+WebDriver driver = new FirefoxDriver();
+ 
+driver.get("http://www.stqatools.com");
+ 
+driver.manage().timeouts().setScriptTimeout(500, TimeUnit.SECONDS);
+ 
+}
+ 
+}
+
+3. FluentWait Command
+
+ 
+
+    Fluent Wait uses two parameters to handle wait– timeout value and polling frequency.
+
+    Fluent wait is another type of Explicit wait and you can define polling and ignore the exception to continue with script execution in case element is not found in webpage.
+
+ 
+
+First of all, it sets the following values.
+
+    Maximum time to wait for any condition.
+
+    Frequency to check the success or failure of a specified position.
+
+FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+
+.withTimeout(timeoutSeconds, TimeUnit.SECONDS)
+
+.pollingEvery(500, TimeUnit.MILLISECONDS)
+
+.ignoring(NoSuchElementException.class);
+
+	
+FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+ 
+.withTimeout(timeoutSeconds, TimeUnit.SECONDS)
+ 
+.pollingEvery(500, TimeUnit.MILLISECONDS)
+ 
+.ignoring(NoSuchElementException.class);
+
+ 
+
+Example of FluentWait using WebDriver wait:
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class Fluent_Wait {
+
+public static void main(String[] args) {
+
+System.setProperty("webdriver.gecko.driver","D:\\geckodriver.exe");
+
+WebDriver driver = new FirefoxDriver();
+
+driver.get("http://www.stqatools.com");
+
+WebElement stqatools = driver.findElement(By.id("stqatools"));
+
+new WebDriverWait(driver, 10)
+
+.pollingEvery(2, TimeUnit.SECONDS)
+
+.withTimeout(10, TimeUnit.SECONDS)
+
+.until(ExpectedConditions.visibilityOf(stqatools));
+
+}
+
+}
+
+	
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+ 
+public class Fluent_Wait {
+ 
+public static void main(String[] args) {
+ 
+System.setProperty("webdriver.gecko.driver","D:\\geckodriver.exe");
+ 
+WebDriver driver = new FirefoxDriver();
+ 
+driver.get("http://www.stqatools.com");
+ 
+WebElement stqatools = driver.findElement(By.id("stqatools"));
+ 
+new WebDriverWait(driver, 10)
+ 
+.pollingEvery(2, TimeUnit.SECONDS)
+ 
+.withTimeout(10, TimeUnit.SECONDS)
+ 
+.until(ExpectedConditions.visibilityOf(stqatools));
+ 
+}
+ 
+}
+******************************************************************************************************************
+date picker
+
+driver.get("http://spicejet.com/");
+webElement date=driver.findElement(By.id(""));
+String dateval="30-12-2019"
+}
+
+public static void selectDateby(WebDriver driver,WebElement element,String dateval){
+
+JavascriptExecutor js=((JavascriptExecutor)driver);
+js.executeScript("argument[0].setAttribute('value','"+dateval+"');",element);
+}
+
+*************************************************************************************************************
+
+
+
+ 
+
+ 
+
+   
+
+
+    
