@@ -2047,7 +2047,32 @@ js.executeScript("argument[0].setAttribute('value','"+dateval+"');",element);
 }
 
 *************************************************************************************************************
+	mutiple window switching selenium
+	
+	public class mutiplewindow {
+	WebDriver driver;
+	@Test
+	public void mutiplewindow() throws InterruptedException {
+	System.setProperty("webdriver.chrome.driver", "E:\\completerajesh\\automation\\chromedriver.exe");	
+	driver = new ChromeDriver(); 
+	WebDriver driver=new ChromeDriver();
+	driver.get("https://www.naukri.com/");
+	String parent=driver.getWindowHandle();
+	System.out.println("parent window id is "+parent);
+	Set<String>allwindows=driver.getWindowHandles();
+	ArrayList<String>tabs=new ArrayList<>(allwindows);
+	driver.switchTo().window(tabs.get(2));
+	driver.close();
+	driver.switchTo().window(tabs.get(1));
 
+	driver.close();
+	driver.switchTo().window(tabs.get(0));
+	
+	
+	System.out.println("Ttile of parent window is "+driver.getTitle());
+}
+}
+	****************************************************************************************************************
 
 
  
