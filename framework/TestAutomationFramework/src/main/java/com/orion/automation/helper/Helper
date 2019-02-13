@@ -1,0 +1,593 @@
+AlertHelper
+
+public class AlertHelper {
+
+	private WebDriver driver;
+	private Logger log = LoggerHelper.getLogger(AlertHelper.class);
+	
+	public AlertHelper(WebDriver driver){
+		this.driver = driver;
+		log.info("AlertHelper object is craeted..");
+	}
+	
+	public Alert getAlert(){
+		log.info("alert test: "+driver.switchTo().alert().getText());
+		return driver.switchTo().alert();
+	}
+	
+	public void acceptAlert(){
+		getAlert().accept();
+		log.info("accept Alert is done...");
+	}
+	
+	public void dismissAlert(){
+		getAlert().dismiss();
+		log.info("dismiss Alert is done...");
+	}
+	
+	public String getAlertText(){
+		String text = getAlert().getText();
+		log.info("alert text: "+text);
+		return text;
+	}
+	
+	public boolean isAlertPresent(){
+		try{
+			driver.switchTo().alert();
+			log.info("alert is present");
+			return true;
+		}
+		catch(NoAlertPresentException e){
+			log.info(e.getCause());
+			return false;
+		}
+	}
+	
+	public void acceptAlertIfPresent(){
+		if(isAlertPresent()){
+			acceptAlert();
+		}
+		else{
+			log.info("Alert is not present..");
+		}
+	}
+	
+	public void dismissAlertIfPresent(){
+		if(isAlertPresent()){
+			dismissAlert();
+		}
+		else{
+			log.info("Alert is not present..");
+		}
+	}
+	
+	public void acceptPrompt(String text){
+		if(isAlertPresent()){
+			Alert alert = getAlert();
+			alert.sendKeys(text);
+			alert.accept();
+			log.info("alert text: "+text);
+		}
+	}
+}
+
+
+
+dropdownhelper
+
+
+
+private WebDriver driver;
+	private Logger log = LoggerHelper.getLogger(DropDownHelper.class);
+	
+	public DropDownHelper(WebDriver driver){
+		this.driver = driver;
+		log.info("DropDownHelper object created..");
+	}
+	
+	public void selectUsingValue(WebElement element, String value){
+		Select select = new Select(element);
+		log.info("selectUsingValue and value is: "+value);
+		select.selectByValue(value);
+	}
+	
+	public void selectUsingIndex(WebElement element, int index){
+		Select select = new Select(element);
+		log.info("selectUsingIndex and index is: "+index);
+		select.selectByIndex(index);
+	}
+	
+	public void selectUsingVisibleText(WebElement element, String visibleText){
+		Select select = new Select(element);
+		log.info("selectUsingVisibleText and visibleText is: "+visibleText);
+		select.selectByVisibleText(visibleText);
+	}
+	
+	public void deSelectUsingValue(WebElement element, String value){
+		Select select = new Select(element);
+		log.info("deSelectUsingValue and value is: "+value);
+		select.deselectByValue(value);
+	}
+	
+	public void deSelectUsingIndex(WebElement element, int index){
+		Select select = new Select(element);
+		log.info("deSelectUsingIndex and index is: "+index);
+		select.deselectByIndex(index);
+	}
+	
+	public void deSelectUsingVisibleText(WebElement element, String visibleText){
+		Select select = new Select(element);
+		log.info("deselectByVisibleText and visibleText is: "+visibleText);
+		select.deselectByVisibleText(visibleText);
+	}
+	
+	public List<String> getAllDropDownData(WebElement element){
+		Select select = new Select(element);
+		List<WebElement> elementList = select.getOptions();
+		List<String> valueList = new LinkedList<String>();
+		for(WebElement ele: elementList){
+			log.info(ele.getText());
+			valueList.add(ele.getText());
+		}
+		return valueList;
+	}
+}
+
+
+
+framehelper
+
+
+private WebDriver driver;
+	private Logger log = LoggerHelper.getLogger(FrameHelper.class);
+	
+	public FrameHelper(WebDriver driver){
+		this.driver = driver;
+	}
+	
+	/**
+	 * this method will switchToFrame based on frame index
+	 * @param frameIndex
+	 */
+	public void switchToFrame(int frameIndex){
+		driver.switchTo().frame(frameIndex);
+		log.info("switched to :"+ frameIndex+" frame");
+	}
+	
+	/**
+	 * this method will switchToFrame based on frame name
+	 * @param frameName
+	 */
+	public void switchToFrame(String frameName){
+		driver.switchTo().frame(frameName);
+		log.info("switched to :"+ frameName+" frame");
+	}
+	
+	/**
+	 * this method will switchToFrame based on frame WebElement
+	 * @param element
+	 */
+	public void switchToFrame(WebElement element){
+		driver.switchTo().frame(element);
+		log.info("switched to frame "+element.toString());
+	}
+}
+
+
+
+javascriptexecutor
+
+
+
+
+
+private WebDriver driver;
+	
+	private Logger log = LoggerHelper.getLogger(JavaScriptHelper.class);
+	
+	public JavaScriptHelper(WebDriver driver){
+		this.driver = driver;
+		log.info("JavaScriptHelper has been initialised");
+	}
+	
+	/**
+	 * This method will execute java script
+	 * @param script
+	 * @return
+	 */
+	public Object executeScript(String script){
+		JavascriptExecutor exe = (JavascriptExecutor)driver;
+		return exe.executeScript(script);
+	}
+	
+	/**
+	 * This method will execute Java script with multiple arguments
+	 * @param script
+	 * @param args
+	 * @return
+	 */
+	public Object executeScript(String script, Object...args){
+		JavascriptExecutor exe = (JavascriptExecutor)driver;
+		return exe.executeScript(script,args);
+	}
+	
+	/**
+	 * This method will scroll till element
+	 * @param element
+	 */
+	public void scrollToElement(WebElement element){
+		log.info("scroll to WebElement...");
+		executeScript("window.scrollTo(arguments[0],arguments[1])",element.getLocation().x,element.getLocation().y);
+	}
+	
+	/**
+	 * Scroll till element and click
+	 * @param element
+	 */
+	public void scrollToElementAndClick(WebElement element){
+		scrollToElement(element);
+		element.click();
+		log.info("element is clicked: "+element.toString());
+	}
+	
+	/**
+	 * Scroll till element view
+	 * @param element
+	 */
+	public void scrollIntoView(WebElement element){
+		log.info("scroll till web element");
+		executeScript("arguments[0].scrollIntoView()",element);
+	}
+	
+	/**
+	 * Scroll till element view and click
+	 * @param element
+	 */
+	public void scrollIntoViewAndClick(WebElement element){
+		scrollIntoView(element);
+		element.click();
+		log.info("element is clicked: "+element.toString());
+	}
+	
+	/**
+	 * This method will scroll down vertically
+	 */
+	public void scrollDownVertically(){
+		log.info("scrolling down vertically...");
+		executeScript("window.scrollTo(0,document.body.scrollHeight)");
+	}
+	
+	/**
+	 * This method will scroll up vertically
+	 */
+	public void scrollUpVertically(){
+		log.info("scrolling up vertically...");
+		executeScript("window.scrollTo(0,-document.body.scrollHeight)");
+	}
+	
+	/**
+	 * This method will scroll till given pixel (e.g=1500)
+	 * @param pixel
+	 */
+	public void scrollDownByPixel(int pixel){
+		executeScript("window.scrollBY(0,"+pixel+")");
+	}
+	
+	public void scrollUpByPixel(int pixel){
+		executeScript("window.scrollBY(0,-"+pixel+")");
+	}
+	
+	/**
+	 * This method will zoom screen by 100%
+	 */
+	public void zoomInBy100Percentage(){
+		executeScript("document.body.style.zoom='100%'");
+	}
+	
+	/**
+	 * This method will zoom screen by 60%
+	 */
+	public void zoomInBy60Percentage(){
+		executeScript("document.body.style.zoom='40%'");
+	}
+	
+	/**
+	 * This method will click on element
+	 * @param element
+	 */
+	public void clickElement(WebElement element){
+		executeScript("arguments[0].click();", element);
+	}
+	
+
+}
+
+
+verification helper
+
+
+
+
+	private WebDriver driver;
+	private Logger log = LoggerHelper.getLogger(VerificationHelper.class);
+	
+	public VerificationHelper(WebDriver driver){
+		this.driver = driver;
+	}
+	
+	public boolean isDisplayed(WebElement element){
+		try{
+			element.isDisplayed();
+			log.info("element is Displayed.."+element.getText());
+			TestBase.logExtentReport("element is Displayed.."+element.getText());
+			return true;
+		}
+		catch(Exception e){
+			log.error("element is not Displayed..", e.getCause());
+			TestBase.logExtentReport("element is not Displayed.."+e.getMessage());
+			return false;
+		}
+	}
+	
+	public boolean isNotDisplayed(WebElement element){
+		try{
+			element.isDisplayed();
+			log.info("element is present.."+element.getText());
+			TestBase.logExtentReport("element is present.."+element.getText());
+			return false;
+		}
+		catch(Exception e){
+			log.error("element is not present..");
+			return true;
+		}
+	}
+	
+	public String readValueFromElement(WebElement element){
+		if(null == element){
+			log.info("WebElement is null..");
+			return null;
+		}
+		boolean status = isDisplayed(element);
+		if(status){
+			log.info("element text is .."+element.getText());
+			return element.getText();
+		}
+		else{
+			return null;
+		}
+	}
+	public String getText(WebElement element){
+		if(null == element){
+			log.info("WebElement is null..");
+			return null;
+		}
+		boolean status = isDisplayed(element);
+		if(status){
+			log.info("element text is .."+element.getText());
+			return element.getText();
+		}
+		else{
+			return null;
+		}
+	}
+	
+	public String getTitle(){
+		log.info("page title is: "+driver.getTitle());
+		return driver.getTitle();
+	}
+	
+	
+}
+
+
+
+waithelper
+
+
+private WebDriver driver;
+	private Logger log = LoggerHelper.getLogger(WaitHelper.class);
+
+	public WaitHelper(WebDriver driver) {
+		this.driver = driver;
+		log.info("WaitHelper object created..");
+	}
+
+	/**
+	 * This is ImplicitWait method
+	 * 
+	 * @param timeout
+	 * @param unit
+	 */
+	public void setImplicitWait(long timeout, TimeUnit unit) {
+		log.info("Implicit Wait has been set to: " + timeout);
+		driver.manage().timeouts().implicitlyWait(timeout, unit);
+	}
+
+	/**
+	 * This will help us to get WebDriverWait object
+	 * 
+	 * @param timeOutInSeconds
+	 * @param pollingEveryInMiliSec
+	 * @return
+	 */
+	private WebDriverWait getWait(int timeOutInSeconds, int pollingEveryInMiliSec) {
+		WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+		wait.pollingEvery(Duration.ofMillis(pollingEveryInMiliSec));
+		wait.ignoring(NoSuchElementException.class);
+		wait.ignoring(ElementNotVisibleException.class);
+		wait.ignoring(StaleElementReferenceException.class);
+		wait.ignoring(NoSuchFrameException.class);
+		return wait;
+	}
+
+	/**
+	 * This method will make sure element is visible
+	 * 
+	 * @param element
+	 * @param timeOutInSeconds
+	 * @param pollingEveryInMiliSec
+	 */
+	public void WaitForElementVisibleWithPollingTime(WebElement element, int timeOutInSeconds,
+			int pollingEveryInMiliSec) {
+		log.info("waiting for :" + element.toString() + " for :" + timeOutInSeconds + " seconds");
+		WebDriverWait wait = getWait(timeOutInSeconds, pollingEveryInMiliSec);
+		wait.until(ExpectedConditions.visibilityOf(element));
+		log.info("element is visible now");
+	}
+
+	/**
+	 * This method will make sure elementToBeClickable
+	 * 
+	 * @param element
+	 * @param timeOutInSeconds
+	 */
+	public void WaitForElementClickable(WebElement element, int timeOutInSeconds) {
+		log.info("waiting for :" + element.toString() + " for :" + timeOutInSeconds + " seconds");
+		WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+		wait.until(ExpectedConditions.elementToBeClickable(element));
+		log.info("element is clickable now");
+	}
+
+	/**
+	 * This method will make sure invisibilityOf element
+	 * 
+	 * @param element
+	 * @param timeOutInSeconds
+	 * @return
+	 */
+	public boolean waitForElementNotPresent(WebElement element, long timeOutInSeconds) {
+		log.info("waiting for :" + element.toString() + " for :" + timeOutInSeconds + " seconds");
+		WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+		boolean status = wait.until(ExpectedConditions.invisibilityOf(element));
+		log.info("element is invisibile now");
+		return status;
+	}
+
+	/**
+	 * This method will wait for frameToBeAvailableAndSwitchToIt
+	 * 
+	 * @param element
+	 * @param timeOutInSeconds
+	 */
+	public void waitForframeToBeAvailableAndSwitchToIt(WebElement element, long timeOutInSeconds) {
+		log.info("waiting for :" + element.toString() + " for :" + timeOutInSeconds + " seconds");
+		WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(element));
+		log.info("frame is available and switched");
+	}
+
+	/**
+	 * This method will give is fluentWait object
+	 * @param timeOutInSeconds
+	 * @param pollingEveryInMiliSec
+	 * @return
+	 */
+	private Wait<WebDriver> getfluentWait(int timeOutInSeconds, int pollingEveryInMiliSec) {
+		Wait<WebDriver> fWait = new FluentWait<WebDriver>(driver)
+				.withTimeout(Duration.ofSeconds(timeOutInSeconds))
+				.pollingEvery(Duration.ofMillis(pollingEveryInMiliSec)).ignoring(NoSuchElementException.class);
+		return fWait;
+	}
+	
+	/**
+	 * 
+	 * @param element
+	 * @param timeOutInSeconds
+	 * @param pollingEveryInMiliSec
+	 */
+	public WebElement waitForElement(WebElement element, int timeOutInSeconds, int pollingEveryInMiliSec){
+		Wait<WebDriver> fwait = getfluentWait(timeOutInSeconds, pollingEveryInMiliSec);
+		fwait.until(ExpectedConditions.visibilityOf(element));
+		return element;
+	}
+	
+	public void pageLoadTime(long timeout, TimeUnit unit){
+		log.info("waiting for page to load for : "+ unit+ " seconds");
+		driver.manage().timeouts().pageLoadTimeout(timeout, unit);
+		log.info("page is loaded");
+	}
+	
+	/**
+	 * This method will make sure elementToBeClickable
+	 * 
+	 * @param element
+	 * @param timeOutInSeconds
+	 */
+	public void waitForElement(WebElement element, int timeOutInSeconds) {
+		log.info("waiting for :" + element.toString() + " for :" + timeOutInSeconds + " seconds");
+		WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+		wait.until(ExpectedConditions.visibilityOf(element));
+		log.info("element is visible now");
+	}
+
+}
+
+
+
+windowhelper
+
+private WebDriver driver;
+	private Logger log = LoggerHelper.getLogger(WindowHelper.class);
+
+	public WindowHelper(WebDriver driver) {
+		this.driver = driver;
+	}
+
+	/**
+	 * This method will switch to parent window
+	 */
+	public void switchToParentWindow() {
+		log.info("switching to parent window...");
+		driver.switchTo().defaultContent();
+	}
+
+	/**
+	 * This method will switch to child window based on index
+	 * @param index
+	 */
+	public void switchToWindow(int index) {
+		Set<String> windows = driver.getWindowHandles();
+		int i = 1;
+		for (String window : windows) {
+			if (i == index) {
+				log.info("switched to : "+index + " window");
+				driver.switchTo().window(window);
+			} else {
+				i++;
+			}
+		}
+	}
+
+	/**
+	 * This method will close all tabbed window and 
+	 * switched to main window
+	 */
+	public void closeAllTabsAndSwitchToMainWindow() {
+		Set<String> windows = driver.getWindowHandles();
+		String mainwindow = driver.getWindowHandle();
+
+		for (String window : windows) {
+			if (!window.equalsIgnoreCase(mainwindow)) {
+				driver.close();
+			}
+		}
+		log.info("switched to main window");
+		driver.switchTo().window(mainwindow);
+	}
+	
+	/**
+	 * This method will do browser back navigation
+	 */
+	public void navigateBack(){
+		log.info("navigating back");
+		driver.navigate().back();
+	}
+	
+	/**
+	 * This method will do browser forward navigation
+	 */
+	public void navigateForward(){
+		log.info("navigating forward");
+		driver.navigate().forward();
+	}
+}

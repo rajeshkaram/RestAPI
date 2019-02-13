@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="10078" started-at="2019-01-07T12:09:31Z" finished-at="2019-01-07T12:09:41Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="10078" started-at="2019-01-07T12:09:31Z" finished-at="2019-01-07T12:09:41Z">
+      <class name="com.orion.automation.applicationtestcases.primusbanklogintestcase">
+        <test-method status="PASS" signature="setupTestSuite()[pri:0, instance:com.orion.automation.applicationtestcases.primusbanklogintestcase@76a3e297]" name="setupTestSuite" is-config="true" duration-ms="107" started-at="2019-01-07T12:09:31Z" finished-at="2019-01-07T12:09:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupTestSuite -->
+        <test-method status="PASS" signature="startTest()[pri:0, instance:com.orion.automation.applicationtestcases.primusbanklogintestcase@76a3e297]" name="startTest" is-config="true" duration-ms="6601" started-at="2019-01-07T12:09:31Z" finished-at="2019-01-07T12:09:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startTest -->
+        <test-method status="PASS" signature="loginTest(java.lang.String, java.lang.String)[pri:0, instance:com.orion.automation.applicationtestcases.primusbanklogintestcase@76a3e297]" name="loginTest" duration-ms="2192" started-at="2019-01-07T12:09:38Z" data-provider="getDataExcel" finished-at="2019-01-07T12:09:41Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Admin]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginTest -->
+        <test-method status="PASS" signature="endLogger(org.testng.ITestResult)[pri:0, instance:com.orion.automation.applicationtestcases.primusbanklogintestcase@76a3e297]" name="endLogger" is-config="true" duration-ms="2" started-at="2019-01-07T12:09:41Z" finished-at="2019-01-07T12:09:41Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=loginTest status=SUCCESS method=primusbanklogintestcase.loginTest(java.lang.String, java.lang.String)[pri:0, instance:com.orion.automation.applicationtestcases.primusbanklogintestcase@76a3e297] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- endLogger -->
+        <test-method status="PASS" signature="endTest()[pri:0, instance:com.orion.automation.applicationtestcases.primusbanklogintestcase@76a3e297]" name="endTest" is-config="true" duration-ms="858" started-at="2019-01-07T12:09:41Z" finished-at="2019-01-07T12:09:41Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- endTest -->
+        <test-method status="PASS" signature="tearDownTestSuite()[pri:0, instance:com.orion.automation.applicationtestcases.primusbanklogintestcase@76a3e297]" name="tearDownTestSuite" is-config="true" duration-ms="155" started-at="2019-01-07T12:09:41Z" finished-at="2019-01-07T12:09:42Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownTestSuite -->
+      </class> <!-- com.orion.automation.applicationtestcases.primusbanklogintestcase -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
