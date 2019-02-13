@@ -2073,10 +2073,23 @@ js.executeScript("argument[0].setAttribute('value','"+dateval+"');",element);
 }
 }
 	****************************************************************************************************************
+multiple tabs and links open in different tabs
 
-
+WebDriver driver;
+	@Test
+	public void mutiplewindow() throws InterruptedException {
+	System.setProperty("webdriver.chrome.driver", "E:\\completerajesh\\automation\\chromedriver.exe");	
+	driver = new ChromeDriver(); 
+	WebDriver driver=new ChromeDriver();
+	driver.get("http://openclinic.sourceforge.net/openclinic/home/index.php");
+	
+	String selectlinknewtab=Keys.chord(Keys.CONTROL,Keys.RETURN);
+		
+		driver.findElement(By.linkText("Medical Records")).sendKeys(selectlinknewtab);
+		ArrayList<String>tabs=new ArrayList<>(driver.getWindowHandles());
+		driver.switchTo().window(tabs.get(1));
  
-
+************************************************************************************************************************
  
 
    
