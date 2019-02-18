@@ -24,7 +24,7 @@ else
 
 
 *****************************************************************
-o check Element Present:
+ check Element Present:
 
 if(driver.findElements(By.xpath("value")).size() != 0){
 System.out.println("Element is Present");
@@ -738,6 +738,7 @@ assertTrue(isElementPresent(By.cssSelector("div.stqatools")));
 	
 
 Example: Verify string using assertTrue.
+
 String str = driver.findElement(By.xpath("xpath")).getText();
 
 assertTrue(actualString.contains("specific text"));
@@ -2090,6 +2091,7 @@ WebDriver driver;
 		driver.switchTo().window(tabs.get(1));
  
 ************************************************************************************************************************
+
  
 
    
